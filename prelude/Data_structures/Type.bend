@@ -40,14 +40,14 @@ type Vector:
 # Para criar uma instância de um tipo definido, utilizamos seus construtores. Aqui está um exemplo de como criar um vetor com três elementos:
 #
 # ```py
-# def main():
-#   # Cria um vetor com três elementos: (2, "a"), (1, "b") e (0, "c")
-#   my_vector = Vector/Cons(2, "a", Vector/Cons(1, "b", Vector/Cons(0, "c", Vector/Nil)))
-#   return my_vector
+def main():
+  # Cria um vetor com três elementos: (2, "a"), (1, "b") e (0, "c")
+  my_vector = Vector/Cons(2, "a", Vector/Cons(1, "b", Vector/Cons(0, "c", Vector/Nil)))
+  return my_vector
 # ```
 # Neste exemplo, criamos um vetor com três elementos: (2, "a"), (1, "b") e (0, "c").
 # O vetor é construído a partir do final, começando com o último elemento e adicionando os elementos anteriores.
 # O resultado é uma lista encadeada de elementos, onde cada elemento aponta para o próximo.
 # A criação de tipos em Bend é uma maneira poderosa de estruturar e manipular dados complexos.
 
-
+# Como veremos a seguir, a definição de tipos em Bend é uma maneira poderosa de estruturar e manipular dados complexos, como Matrizes, Árvores, Grafos, etc.
