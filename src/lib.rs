@@ -3,8 +3,8 @@ use crate::{
   hvm::{
     add_recursive_priority::add_recursive_priority,
     check_net_size::{check_net_sizes, MAX_NET_SIZE},
-    display_hvm_book,
     eta_reduce::eta_reduce_hvm_net,
+    hvm_book_show_pretty,
     inline::inline_hvm_book,
     mutual_recursion,
     prune::prune_hvm_book,
@@ -114,6 +114,7 @@ pub fn desugar_book(
 
   // Auto match linearization
   ctx.book.make_var_names_unique();
+  ctx.book.desugar_use();
   match opts.linearize_matches {
     OptLevel::Disabled => (),
     OptLevel::Alt => ctx.book.linearize_match_binds(),
@@ -129,21 +130,21 @@ pub fn desugar_book(
 
   ctx.book.make_var_names_unique();
   ctx.book.desugar_use();
+
   ctx.book.make_var_names_unique();
   ctx.book.linearize_vars();
 
   // sanity check
   ctx.check_unbound_vars()?;
 
-  // Optimizing passes
   if opts.float_combinators {
     ctx.book.float_combinators(MAX_NET_SIZE);
   }
-
+  // sanity check
   ctx.check_unbound_refs()?;
 
+  // Optimizing passes
   ctx.prune(opts.prune);
-
   if opts.merge {
     ctx.book.merge_definitions();
   }
@@ -249,7 +250,7 @@ fn run_hvm(book: &::hvm::ast::Book, cmd: &str, run_opts: &RunOpts) -> Result<Str
   }
 
   let out_path = ".out.hvm";
-  std::fs::write(out_path, display_hvm_book(book).to_string()).map_err(|x| x.to_string())?;
+  std::fs::write(out_path, hvm_book_show_pretty(book)).map_err(|x| x.to_string())?;
   let mut process = std::process::Command::new(run_opts.hvm_path.clone())
     .arg(cmd)
     .arg(out_path)
