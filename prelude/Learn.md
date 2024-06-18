@@ -127,7 +127,7 @@ There are the boolean operators: `&`, `|` and `^`.
 
 - In Bend the boolean operators are exclusive to `u24` and `i24`.
 
-For comparisons we have: `==`, `!=`, `<` and `>`, which return `u24`.
+For comparisons we have: `==`, `!=`, `<`, `>`, `>=` and `<=`, which return `u24`.
 
 ```py
 1.0 == 1.0 => 1  # EQ
@@ -185,7 +185,7 @@ else:
 
 Switches may only be used with native numbers values. It lets us check for many cases at the same time.
 
-- The last case must be `_`, like a `default` case.
+- Beginning with 0 and incrementing by 1. The last case must be `_`, like a `default` case.
 
 ```py
 switch number:
