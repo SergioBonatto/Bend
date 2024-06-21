@@ -1,14 +1,5 @@
 # Bend oferece um poderoso sistema de correspondência de padrões através da construção match. Ela permite um controle de fluxo claro e seguro, permitindo uma desestruturação clara e concisa dos valores, com a capacidade de associar variáveis aos campos dos construtores. Com match, você pode escrever código expressivo e robusto para manipular diferentes tipos de dados de forma eficiente.
 
-
-
-
- # Essa funcionalidade permite deconstruir e avaliar valores baseados em seus padrões, tornando o código mais seguro e expressivo.             Vamos explorar como usar match em Rust, com exemplos e explicações detalhadas.
-
-# A construção match fornecem uma maneira elegante e eficiente de manipular diferentes casos de valores com base em seus construtores.
-
-# Ela permite um controle de fluxo claro e seguro, permitindo uma desestruturação clara e concisa dos valores. Com a capacidade de associar variáveis aos campos dos construtores. Com match, você pode escrever código expressivo e robusto para manipular diferentes tipos de dados de forma eficiente.
-
 # Estrutura Básica do match
 # A estrutura match examina um valor e permite executar diferentes blocos de código com base no construtor do valor correspondente. Veja um exemplo básico:
 
