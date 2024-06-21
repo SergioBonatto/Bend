@@ -17,14 +17,10 @@ def match_example(x):
 # Regras e Comportamento
 # 1. **Correspondência de Padrões**: Os padrões no match devem cobrir todas as variantes possíveis do tipo que está sendo correspondido.
 # 2. **Associação de Variáveis**: É possível associar um nome de variável ao valor correspondente. Os campos do construtor associado são vinculados a matched_var.field_name.
-# 3. **Atribuição**: Cada caso do match atribui os valores dos campos do construtor correspondente às variáveis especificadas no corpo do caso.
-                  Para campos dentro do construtor, você pode usar padrões nomeados para extrair valores específicos.
-
+# 3. **Atribuição**: Para campos dentro do construtor, você pode usar variáveis especificadas no corpo do caso.
 
 # Exemplo Detalhado
-
 # # Type Simples
-
 # Considere um type Direction:
 type Direction:
   Up
@@ -32,56 +28,42 @@ type Direction:
   Left
   Right
 
-
 def direction_to_string(direction):
   match direction:
-    case Direction/Up
-    return "Up"
-    case Direction/Down
-    return "Down"
-    case Direction/Left
-    return "Left"
-    case Direction/Right
-    return "Right"
+    case Direction/Up:
+      return "Up"
+    case Direction/Down:
+      return "Down"
+    case Direction/Left:
+      return "Left"
+    case Direction/Right:
+      return "Right"
 
 # Neste exemplo, direction_to_string converte um valor Direction para uma string correspondente.
 
 # Estruturas Aninhadas
 # Considere uma árvore binária:
-
-
-type BTree
+type BTree:
   Leaf
   Node {value, ~left, right}
 
 
 def sum_tree(btree):
   match btree:
-    case Tree/Leaf:
+    case BTree/Leaf:
       return 0
-    case Tree/Node:
+    case BTree/Node:
       return btree.value + sum_tree(btree.left) + sum_tree(btree.right)
 
 # Aqui, sum_tree calcula a soma de todos os valores em uma árvore binária:
 # - Se tree for Tree/Leaf, retorna 0.
 # - Se tree for Tree/Node, soma o valor do nó atual com as somas das subárvores esquerda e direita.
 
-
 # Considere a definição de um tipo Option:
 type Option:
   None
   Some {value}
-
-# Agora vamos aplicar a função match_example a essa estrutura:
-
-
-def match_example(x):
-  match x:
-    case Option/Some:
-      return x.value
-    case Option/None:
-      return 0
-
+# Agora vamos aplicar a função match_example.
 
 # Vamos testar a função:
 def main():
