@@ -1,12 +1,12 @@
-# # Cálculo Lambda em Bend
+# Cálculo Lambda em Bend
 #
-# ## Introdução
+# Introdução
 # Bend permite o uso de lambdas, adotando notações como as de Scott e Church,
 # com uma sintaxe similar à notação equacional que vimos anteriormente.
 #
-# ## Definição de Tipos de Dados
+# Definição de Tipos de Dados
 #
-# ### Booleans
+# Booleans
 # Para definir tipos de dados usando lambdas, utilizamos a notação de atribuição.
 # Por exemplo, para definir os valores booleanos `false` e `true`, usamos:
 
@@ -16,18 +16,19 @@ true  = λf λt t
 # - `false` é uma função que recebe dois argumentos e retorna o primeiro.
 # - `true` é uma função que recebe dois argumentos e retorna o segundo.
 #
-# ### Exemplos de Uso de Booleans
+# Exemplos de Uso de Booleans
 #
-# #### Definição da Função `not`
+# Definição da Função `not`
 # Para definir a função `not` usando booleans definidos por lambdas:
 
 not = λb (b true false)
 
-# - `not` é uma função que recebe um booleano `b` e retorna `true` se `b` for `false` e `false` se `b` for `true`.
+# - `not` é uma função que recebe um booleano `b` e retorna `true` se `b` for `false` 
+# e `false` se `b` for `true`.
 #
-# ### Definição de Números Naturais
+# Definição de Números Naturais
 #
-# #### Números Naturais Codificados por Scott (Scott-Encoded)
+# Números Naturais Codificados por Scott (Scott-Encoded)
 # Para definir números naturais usando a codificação de Scott:
 
 Zs =    λz λs z
@@ -44,7 +45,7 @@ Ss = λp λz λs (s p)
 # A codificação de Scott permite a deconstrução direta dos números naturais,
 # facilitando a definição de funções recursivas que operam sobre esses números.
 #
-# #### Números Naturais Codificados por Church (Church-Encoded)
+# Números Naturais Codificados por Church (Church-Encoded)
 # Para definir números naturais usando a codificação de Church:
 
 Zc =    λz λs z
@@ -65,14 +66,14 @@ Sc = λp λz λs (s (p z s))
 # a codificação de Church é baseada na aplicação repetitiva de funções, 
 # o que facilita a definição de operações aritméticas.
 
-# ### Exemplos de Uso de Números Naturais
+# Exemplos de Uso de Números Naturais
 #
-# #### Adição de Números Naturais
+# Adição de Números Naturais
 # Para definir a adição de números naturais codificados por Church:
 add = λm λn λz λs (m (n z s) s)
 
-# A função de soma add para números naturais codificados por Church combina as iterações de ambos os números, 
-# m e n, aplicando a função de sucessor repetidamente. 
+# A função de soma add para números naturais codificados por Church combina as iterações 
+# de ambos os números, m e n, aplicando a função de sucessor repetidamente. 
 # Aqui está como ela funciona:
 #
 # - add é uma função que recebe dois números naturais codificados por Church, m e n, e retorna sua soma.
@@ -82,7 +83,8 @@ add = λm λn λz λs (m (n z s) s)
 # - (n z s) aplica n vezes a função s ao valor inicial z.
 # - m aplica a função s m vezes ao resultado de (n z s), combinando as iterações de ambos os números naturais.
 #
-# Isso resulta na aplicação da função de sucessor m + n vezes, efetivamente somando os dois números naturais.
+# Isso resulta na aplicação da função de sucessor m + n vezes, 
+# efetivamente somando os dois números naturais.
 
 
 # Exemplo de função Fibonacci
@@ -92,19 +94,22 @@ fib = λx switch x {
   1: 1
   _: (+ (fib (- x 1)) (fib (- x 2)))
 }
-#
+
 # - `fib` é uma função que calcula o n-ésimo número de Fibonacci.
 # - `x` é o argumento que determina qual número de Fibonacci será calculado.
 # - `switch x { ... }` é uma estrutura de seleção que permite diferentes casos baseados no valor de `x`.
 # - `0: 0` define que o 0º número de Fibonacci é 0.
 # - `1: 1` define que o 1º número de Fibonacci é 1.
 # - `_` é um caso genérico que captura todos os outros valores de `x`.
-# - `(+ (fib (- x 1)) (fib (- x 2)))` define recursivamente que o `x`-ésimo número de Fibonacci é a soma dos dois números de Fibonacci anteriores.
-#
-# Esta função utiliza recursão para calcular os números de Fibonacci de forma eficiente, conforme definido pela sequência matemática clássica.
+# - `(+ (fib (- x 1)) (fib (- x 2)))` define recursivamente que o `x`-ésimo número de 
 
-# ## Exemplos Completos
-# ### Combinando Tudo
+# Fibonacci é a soma dos dois números de Fibonacci anteriores.
+#
+# Esta função utiliza recursão para calcular os números de Fibonacci de forma eficiente, 
+# conforme definido pela sequência matemática clássica.
+
+# Exemplos Completos
+# Combinando Tudo
 #
 # Vamos combinar as definições de booleans, números naturais e funções em um exemplo completo:
 
@@ -116,15 +121,16 @@ Main =
   let onec    = (Sc Zc)
   let twoc    = (Sc (Sc Zc))
   let threec  = (Sc (Sc (Sc Zc))) 
+  let add23   = (add twoc threec)
   let neg     = (not true)
   let exp2    = (Exp2 10)
   let sum1    = (Sum1 1 2)
   let sum2    = (Sum2 1 2)
   let fib10   = (fib 10)
-  # (fib10)
-  (add twoc threec)
+  (fib10)
 
-# O uso da estrutura `bend` no cálculo lambda ocorre da mesma forma que na notação equacional vista anteriormente.
+# O uso da estrutura `bend` no cálculo lambda ocorre da mesma forma que na notação 
+# equacional vista anteriormente.
 
 Exp2 = λn (
   bend x = 0 {
@@ -138,7 +144,8 @@ Exp2 = λn (
       y
   })
 
-# É importante ressaltar que a definição de funções no cálculo lambda é feita de forma análoga à notação equacional, podendo ser feita de forma mista.
+# É importante ressaltar que a definição de funções no cálculo lambda é feita 
+# de forma análoga à notação equacional, podendo ser feita de forma mista.
 
 (Sum1 a b) = (+ a b)
 
@@ -146,12 +153,16 @@ Exp2 = λn (
 
 Sum2 = λa λb (+ a b)
 
-# # são exemplos de definições de funções no cálculo lambda. A diferença está na forma de definir a variável que será utilizada na função, sendo que a primeira é feita de forma análoga à notação equacional e a segunda é feita de forma pura no cálculo lambda.
+# são exemplos de definições de funções no cálculo lambda. 
+# A diferença está na forma de definir a variável que será utilizada na função, 
+# sendo que a primeira é feita de forma análoga à notação equacional e a segunda é 
+# feita de forma pura no cálculo lambda.
 
-# ## Conclusão
+# Conclusão
 #
 # O cálculo lambda em Bend, com o suporte a notações como as de Scott e Church,
 # proporciona uma maneira poderosa e expressiva de definir e trabalhar com funções
 # e tipos de dados. Compreender e utilizar essa notação pode melhorar significativamente
 # a clareza e a eficiência do seu código, especialmente ao lidar com funções e tipos de
 # dados matemáticos e recursivos.
+
