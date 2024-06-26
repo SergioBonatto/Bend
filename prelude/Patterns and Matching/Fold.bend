@@ -12,6 +12,7 @@
 
 # Chamadas Implícitas de `fold`
 # Para campos anotados com `~` na definição do tipo, a função `fold` é chamada implicitamente.
+
 # Suponha uma definição de árvore onde os campos da subárvore são anotados com `~`:
 
 type BTree:
