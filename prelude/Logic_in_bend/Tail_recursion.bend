@@ -88,10 +88,8 @@ def fib_tail_aux(n, a, b):
 
 # Exemplo de implementação no HVM:
 
-# ```haskell
 # (IsNat Z)     = True
 # (IsNat (S p)) = (IsNat p)
-# ```
 
 # Isso não "cresce para sempre" porque, no caso `(IsNat Z)`, ele reduz
 # diretamente para `True`, usando uma quantidade constante de memória.

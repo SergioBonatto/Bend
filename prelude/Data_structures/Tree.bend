@@ -1,15 +1,18 @@
-# ## Árvores em Bend
-# Bend possui suporte nativo para árvores, uma estrutura de dados hierárquica com nós conectados por arestas.
+# Árvores em Bend
+# Bend possui suporte nativo para árvores, uma estrutura de dados hierárquica 
+# com nós conectados por arestas.
 
-# ### Definição de Árvores
+# Definição de Árvores
 # Em Bend, uma árvore (`Tree`) é definida com dois construtores:
 # - `Node { ~left, ~right }`: Representa um nó da árvore com subárvores à esquerda e à direita.
 # - `Leaf { value }`: Representa uma folha da árvore que armazena um valor.
 
-# As árvores são ideais para algoritmos que se beneficiam de recursão paralela, pois permitem dividir problemas grandes em subproblemas menores.
+# As árvores são ideais para algoritmos que se beneficiam de recursão paralela, 
+# pois permitem dividir problemas grandes em subproblemas menores.
 
-# ### Sintaxe para Árvores
-# Bend fornece o operador `![]` para criar ramos de árvore e o operador `!` para criar uma folha de árvore.
+# Sintaxe para Árvores
+# Bend fornece o operador `![]` para criar ramos de árvore e o operador `!` para criar 
+# uma folha de árvore.
 # - `![a, b]` é equivalente a `Tree/Node { left: a, right: b }`
 # - `!x` é equivalente a `Tree/Leaf { value: x }`
 

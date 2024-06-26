@@ -1,7 +1,7 @@
-# # Tuplas em Bend
+# Tuplas em Bend
 # Em Bend, uma tupla pode conter dois ou mais elementos. Os elementos são separados por vírgulas.
 #
-# ## Definindo Tuplas
+# Definindo Tuplas
 # Para definir uma tupla, utilizamos parênteses e separamos os elementos por vírgulas.
 #
 # Exemplo: Definindo Tuplas Simples
@@ -10,17 +10,20 @@
 # (1, 2) # tupla com dois elementos
 
 # Podemos fazer pattern matching (correspondência de padrões) em tuplas:
-# (fst, snd, ...) = ("Hi", 2, ...)
+# (fst, snd, ..., lst) = ("Hi", 2, ..., lst)
 # # fst = "Hi"
 # # snd = 2
 # # ... = ...
+# # lst = lst
 
-# (fst, snd) = (1, "Hello", ...)
+# (fst, snd) = (1, "Hello", ..., lst)
 # # fst = 1
-# # snd = ("Hello", ...)
+# # snd = ("Hello", ..., lst)
 
-# ## Criando e Manipulando Tuplas
-# Para criar e manipular tuplas, utilizamos a sintaxe de parênteses e vírgulas. A seguir, um exemplo de funções que retornam os primeiros, segundos e terceiros elementos de uma tupla:
+# Criando e Manipulando Tuplas
+# Para criar e manipular tuplas, utilizamos a sintaxe de parênteses e vírgulas. 
+# A seguir, um exemplo de funções que retornam os primeiros, 
+# segundos e terceiros elementos de uma tupla:
 
 def return_fst(t):
   (fst, snd) = t

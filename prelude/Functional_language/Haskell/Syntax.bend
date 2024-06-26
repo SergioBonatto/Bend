@@ -11,9 +11,8 @@
 # grande variedade de problemas de forma simples e eficiente. Isso é ideal 
 # para quem busca utilizar a programação funcional.
 
-## Como Escrever Funções na Notação Equacional
-
-### Estrutura Básica
+# Como Escrever Funções na Notação Equacional
+# Estrutura Básica
 # A notação equacional em Bend segue uma estrutura simples:
 #
 # Função parâmetros = expressão
@@ -22,9 +21,8 @@
 # - `parâmetros` são os parâmetros que a função recebe.
 # - `expressão` é o resultado ou a operação que a função deve realizar.
 
-### Exemplos Simples
-
-#### Função de Somatório
+# Exemplos Simples
+# Função de Somatório
 # Vamos criar uma função que calcula o somatório de 0 até n:
 Sum 0 = 0
 Sum n = (+ n (Sum (- n 1)))
@@ -32,7 +30,7 @@ Sum n = (+ n (Sum (- n 1)))
 # - `Sum 0 = 0` define que o somatório de 0 é 0.
 # - `Sum n = (+ n (Sum (- n 1)))` define que o somatório de `n` é `n` mais o somatório de `n-1`.
 
-#### Função Fatorial
+# Função Fatorial
 # Uma função para calcular o fatorial de um número:
 Factorial 0 = 1
 Factorial n = (* n (Factorial (- n 1)))
@@ -40,7 +38,7 @@ Factorial n = (* n (Factorial (- n 1)))
 # - `Factorial 0 = 1` define que o fatorial de 0 é 1.
 # - `Factorial n = (* n (Factorial (- n 1)))` define que o fatorial de `n` é `n` vezes o fatorial de `n-1`.
 
-#### Função de Fibonacci
+# Função de Fibonacci
 # Uma função para calcular o n-ésimo número de Fibonacci:
 Fibonacci 0 = 0
 Fibonacci 1 = 1
@@ -50,10 +48,10 @@ Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))
 # - `Fibonacci 1 = 1` define que o 1º número de Fibonacci é 1.
 # - `Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))` define que o `n`-ésimo número de Fibonacci é a soma dos dois anteriores.
 
-### Uso de Tipos Definidos pelo Usuário
+# Uso de Tipos Definidos pelo Usuário
 # A notação equacional também pode ser usada com tipos definidos pelo usuário, como listas, árvores, etc.
 
-#### Definição de uma Lista
+# Definição de uma Lista
 # Primeiro, vamos definir um tipo `UserList` que representa uma lista:
 type UserList:
   Cons { head, ~tail } 
@@ -62,7 +60,7 @@ type UserList:
 # - `Cons` é um construtor que tem um `head` e um `tail`.
 # - `Nil` representa uma lista vazia.
 
-#### Função de Comprimento de uma Lista
+# Função de Comprimento de uma Lista
 # Agora, uma função que calcula o comprimento de uma lista:
 Length UserList/Nil = 0
 Length (UserList/Cons head tail) = (+ 1 (Length tail))
@@ -70,7 +68,7 @@ Length (UserList/Cons head tail) = (+ 1 (Length tail))
 # - `Length UserList/Nil = 0` define que o comprimento de uma lista vazia é 0.
 # - `Length (UserList/Cons head tail) = (+ 1 (Length tail))` define que o comprimento de uma lista não vazia é 1 mais o comprimento da `tail`.
 
-### Uso do Bend na Notação Equacional
+# Uso do Bend na Notação Equacional
 
 # Criando uma função que calcula `2^n` usando o `bend` na notação tradicional:
 def exp2(n):
@@ -87,7 +85,7 @@ def exp2(n):
 # Se `n` for 0, a função retorna 1; caso contrário, a função cria dois ramos e soma 
 # os resultados de forma recursiva.
 
-#### Representação gráfica da árvore criada pela função `exp2` para n = 3:
+# Representação gráfica da árvore criada pela função `exp2` para n = 3:
 # x = 0                 [ ]
 #                      /   \
 #                     /     \

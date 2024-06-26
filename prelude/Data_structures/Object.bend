@@ -1,8 +1,11 @@
-# # Objetos em Bend
-# Em Bend, um objeto define um tipo com um único construtor, similar a uma estrutura (struct), um registro (record) ou uma classe (class). Objetos permitem a criação de tipos de dados complexos com múltiplos campos.
+# Objetos em Bend
+# Em Bend, um objeto define um tipo com um único construtor, similar a uma estrutura (struct), 
+# um registro (record) ou uma classe (class). Objetos permitem a criação de 
+# tipos de dados complexos com múltiplos campos.
 #
-# ## Definindo Objetos
-# Para definir um objeto em Bend, utilizamos a palavra-chave `object`. A definição de um objeto especifica os campos que ele possui.
+# Definindo Objetos
+# Para definir um objeto em Bend, utilizamos a palavra-chave `object`. 
+# A definição de um objeto especifica os campos que ele possui.
 #
 # Exemplo: Definindo Objetos Simples
 # Aqui estão alguns exemplos de definição de objetos:
@@ -29,11 +32,13 @@ object Account {
 # Neste exemplo, definimos um objeto Account com dois campos: number e balance.
 # O construtor Account tem dois parâmetros: number e balance.
 #
-# ## Criando e Manipulando Objetos
-# Para criar uma instância de um objeto, utilizamos seu construtor. Podemos acessar e manipular os campos de um objeto utilizando a palavra-chave `open`.
+# Criando e Manipulando Objetos
+# Para criar uma instância de um objeto, utilizamos seu construtor. 
+# Podemos acessar e manipular os campos de um objeto utilizando a palavra-chave `open`.
 #
 # Exemplo: Criando uma Instância de Account
-# A seguir, um exemplo de funções `createAccount1` e `createAccount2` que criam instâncias do objeto Account:
+# A seguir, um exemplo de funções `createAccount1` e `createAccount2` que criam 
+# instâncias do objeto Account:
 
 def createAccount1():
   return Account { number: "1234-56", balance: 10000.00 } 
@@ -55,5 +60,6 @@ def main():
 
 # Neste exemplo:
 # - Utilizamos `open` para acessar os campos number e balance do objeto Account.
-# - Utilizamos `return` para retornar uma instância do objeto Account com os campos number e balance preenchidos com os valores fornecidos.
+# - Utilizamos `return` para retornar uma instância do objeto Account com os 
+# campos number e balance preenchidos com os valores fornecidos.
 
