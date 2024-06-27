@@ -1,76 +1,76 @@
-# Notação Equacional em Bend
+# Equational Notation in Bend
 #
-# Bend é uma linguagem que permite a notação equacional no estilo de Haskell, 
-# porém com uma sintaxe mais simples e direta.
+# Bend is a language that allows equational notation similar to Haskell,
+# but with simpler and more straightforward syntax.
 #
-# Essa notação é muito útil para definir funções matemáticas e recursivas, 
-# pois permite uma representação clara e concisa.
+# This notation is very useful for defining mathematical and recursive functions,
+# as it allows for a clear and concise representation.
 #
-# A notação equacional em Bend é uma ferramenta poderosa para a definição 
-# de funções matemáticas e recursivas, podendo ser usada para resolver uma 
-# grande variedade de problemas de forma simples e eficiente. Isso é ideal 
-# para quem busca utilizar a programação funcional.
+# Equational notation in Bend is a powerful tool for defining
+# mathematical and recursive functions, which can be used to solve a
+# wide variety of problems simply and efficiently. This is ideal
+# for those who seek to utilize functional programming.
 
-# Como Escrever Funções na Notação Equacional
-# Estrutura Básica
-# A notação equacional em Bend segue uma estrutura simples:
+# How to Write Functions in Equational Notation
+# Basic Structure
+# The equational notation in Bend follows a simple structure:
 #
-# Função parâmetros = expressão
+# Function parameters = expression
 #
-# - `Função` é o nome da função.
-# - `parâmetros` são os parâmetros que a função recebe.
-# - `expressão` é o resultado ou a operação que a função deve realizar.
+# - `Function` is the name of the function.
+# - `parameters` are the parameters that the function receives.
+# - `expression` is the result or operation that the function should perform.
 
-# Exemplos Simples
-# Função de Somatório
-# Vamos criar uma função que calcula o somatório de 0 até n:
+# Simple Examples
+# Sum Function
+# Let's create a function that calculates the sum from 0 to n:
 Sum 0 = 0
 Sum n = (+ n (Sum (- n 1)))
 
-# - `Sum 0 = 0` define que o somatório de 0 é 0.
-# - `Sum n = (+ n (Sum (- n 1)))` define que o somatório de `n` é `n` mais o somatório de `n-1`.
+# - `Sum 0 = 0` defines that the sum of 0 is 0.
+# - `Sum n = (+ n (Sum (- n 1)))` defines that the sum of `n` is `n` plus the sum of `n-1`.
 
-# Função Fatorial
-# Uma função para calcular o fatorial de um número:
+# Factorial Function
+# A function to calculate the factorial of a number:
 Factorial 0 = 1
 Factorial n = (* n (Factorial (- n 1)))
 
-# - `Factorial 0 = 1` define que o fatorial de 0 é 1.
-# - `Factorial n = (* n (Factorial (- n 1)))` define que o fatorial de `n` é `n` vezes o fatorial de `n-1`.
+# - `Factorial 0 = 1` defines that the factorial of 0 is 1.
+# - `Factorial n = (* n (Factorial (- n 1)))` defines that the factorial of `n` is `n` times the factorial of `n-1`.
 
-# Função de Fibonacci
-# Uma função para calcular o n-ésimo número de Fibonacci:
+# Fibonacci Function
+# A function to calculate the nth Fibonacci number:
 Fibonacci 0 = 0
 Fibonacci 1 = 1
 Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))
 
-# - `Fibonacci 0 = 0` define que o 0º número de Fibonacci é 0.
-# - `Fibonacci 1 = 1` define que o 1º número de Fibonacci é 1.
-# - `Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))` define que o `n`-ésimo número de Fibonacci é a soma dos dois anteriores.
+# - `Fibonacci 0 = 0` defines that the 0th Fibonacci number is 0.
+# - `Fibonacci 1 = 1` defines that the 1st Fibonacci number is 1.
+# - `Fibonacci n = (+ (Fibonacci (- n 1)) (Fibonacci (- n 2)))` defines that the nth Fibonacci number is the sum of the two preceding ones.
 
-# Uso de Tipos Definidos pelo Usuário
-# A notação equacional também pode ser usada com tipos definidos pelo usuário, como listas, árvores, etc.
+# Using User-Defined Types
+# Equational notation can also be used with user-defined types, such as lists, trees, etc.
 
-# Definição de uma Lista
-# Primeiro, vamos definir um tipo `UserList` que representa uma lista:
+# Defining a List
+# First, let's define a `UserList` type that represents a list:
 type UserList:
-  Cons { head, ~tail } 
+  Cons { head, ~tail }
   Nil
 
-# - `Cons` é um construtor que tem um `head` e um `tail`.
-# - `Nil` representa uma lista vazia.
+# - `Cons` is a constructor that has a `head` and a `tail`.
+# - `Nil` represents an empty list.
 
-# Função de Comprimento de uma Lista
-# Agora, uma função que calcula o comprimento de uma lista:
+# Length Function for a List
+# Now, a function that calculates the length of a list:
 Length UserList/Nil = 0
 Length (UserList/Cons head tail) = (+ 1 (Length tail))
 
-# - `Length UserList/Nil = 0` define que o comprimento de uma lista vazia é 0.
-# - `Length (UserList/Cons head tail) = (+ 1 (Length tail))` define que o comprimento de uma lista não vazia é 1 mais o comprimento da `tail`.
+# - `Length UserList/Nil = 0` defines that the length of an empty list is 0.
+# - `Length (UserList/Cons head tail) = (+ 1 (Length tail))` defines that the length of a non-empty list is 1 plus the length of the `tail`.
 
-# Uso do Bend na Notação Equacional
+# Using Bend in Equational Notation
 
-# Criando uma função que calcula `2^n` usando o `bend` na notação tradicional:
+# Creating a function that calculates `2^n` using the `bend` in traditional notation:
 def exp2(n):
   bend x = 0:
     when x < n:
@@ -81,11 +81,11 @@ def exp2(n):
       y = 1
   return y
 
-# Neste exemplo, a função `exp2` calcula `2^n` criando uma árvore de forma recursiva.
-# Se `n` for 0, a função retorna 1; caso contrário, a função cria dois ramos e soma 
-# os resultados de forma recursiva.
+# In this example, the `exp2` function calculates `2^n` by creating a recursive tree.
+# If `n` is 0, the function returns 1; otherwise, the function creates two branches and sums
+# the results recursively.
 
-# Representação gráfica da árvore criada pela função `exp2` para n = 3:
+# Graphical representation of the tree created by the `exp2` function for n = 3:
 # x = 0                 [ ]
 #                      /   \
 #                     /     \
@@ -101,15 +101,15 @@ def exp2(n):
 #            / \    /  \     / \    /  \
 # x = 3    [1] [1] [1] [1] [1] [1] [1] [1]
 #
-# Ao final, cada folha recebe o valor 1 e a soma de todas as folhas é `2^n`.
+# At the end, each leaf gets the value 1 and the sum of all the leaves is `2^n`.
 
-# É possível usar essa notação enquanto se usa a equacional, 
-# mas para padronização, há uma forma equivalente de escrever a função `exp2` usando a notação equacional:
+# It is possible to use this notation while using the equational one,
+# but for standardization, there is an equivalent way to write the `exp2` function using equational notation:
 
 Exp2 n =
   (bend x = 0 {
     when (< x n):(
-      let lft = (fork (+ x 1)) 
+      let lft = (fork (+ x 1))
       let rgt = (fork (+ x 1))
       let y = (+ lft rgt)
       y)
@@ -118,42 +118,42 @@ Exp2 n =
       y
   })
 
-# A função `Exp2` é equivalente à função `exp2` e usa a notação equacional para definir a função de maneira clara e concisa.
+# The `Exp2` function is equivalent to the `exp2` function and uses equational notation to define the function clearly and concisely.
 
-# A sintaxe do `bend` na notação equacional é a seguinte: 
+# The syntax of `bend` in equational notation is as follows:
 # bend bind=term, ... { when cond: term; else: term; }
 
-## Exemplo Completo
+## Complete Example
 
-# Vamos combinar tudo em um exemplo completo:
+# Let's combine everything in a complete example:
 Main =
-  let soma      = ("Sum", (Sum 5))
-  let fatorial  = ("Factorial", (Factorial 5))
+  let sum      = ("Sum", (Sum 5))
+  let factorial  = ("Factorial", (Factorial 5))
   let fibonacci = ("Fibonacci", (Fibonacci 6))
-  let list      = (UserList/Cons ("soma", soma) 
-                  (UserList/Cons ("fatorial", fatorial) 
-                  (UserList/Cons ("fibonacci", fibonacci) 
+  let list      = (UserList/Cons ("sum", sum)
+                  (UserList/Cons ("factorial", factorial)
+                  (UserList/Cons ("fibonacci", fibonacci)
                   UserList/Nil)))
   let length    = ("Length original List", (Length list))
   let exp2a     = ("exp2: ", (exp2(10)))
   let exp2b     = ("Exp2: ", (Exp2 10))
-  let result    = [soma, fatorial, fibonacci, length, exp2a, exp2b]
+  let result    = [sum, factorial, fibonacci, length, exp2a, exp2b]
   result
 
-# Este exemplo:
+# This example:
 #
-# - Define e usa funções de somatório, fatorial e Fibonacci.
-# - Cria uma lista com os resultados.
-# - Calcula o comprimento da lista.
-# - Calcula `2^n` de duas maneiras diferentes.
-# - Cria uma nova lista com os resultados anteriores.
-# - Retorna a nova lista.
+# - Defines and uses sum, factorial, and Fibonacci functions.
+# - Creates a list with the results.
+# - Calculates the length of the list.
+# - Calculates `2^n` in two different ways.
+# - Creates a new list with the previous results.
+# - Returns the new list.
 
-# Conclusão
-# A notação equacional em Bend facilita a definição de funções matemáticas e 
-# recursivas de maneira clara e concisa. Isso torna o Bend uma linguagem poderosa 
-# para resolver uma ampla variedade de problemas utilizando programação funcional.
+# Conclusion
+# Equational notation in Bend makes it easier to define mathematical and
+# recursive functions clearly and concisely. This makes Bend a powerful language
+# for solving a wide variety of problems using functional programming.
 #
-# Compreender e utilizar essa notação pode melhorar significativamente a clareza 
-# e a eficiência do seu código, especialmente ao lidar com problemas matemáticos 
-# e recursivos.
+# Understanding and using this notation can significantly improve the clarity
+# and efficiency of your code, especially when dealing with mathematical
+# and recursive problems.

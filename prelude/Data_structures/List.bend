@@ -1,47 +1,46 @@
-# Lista
+# List
 #
 # type List:
 #   Cons {head, ~tail}
 #   Nil
 #
-# O tipo List é um tipo nativo em Bend, utilizado para representar sequências ordenadas de elementos. 
-# Ele é definido por dois construtores principais: Cons e Nil.
+# The List type is a native type in Bend, used to represent ordered sequences of elements.
+# It is defined by two main constructors: Cons and Nil.
 #
-# Construtores:
-# - Cons: Este construtor é utilizado para criar uma lista com um elemento e uma cauda. 
-#   Ele recebe dois argumentos:
-#     - head: O valor do primeiro elemento da lista.
-#     - tail: A cauda da lista, que é um outro objeto do tipo List.
-# - Nil: Este construtor representa uma lista vazia. Ele não recebe argumentos e é usado 
-# para indicar o fim da lista.
+# Constructors:
+# - Cons: This constructor is used to create a list with an element and a tail.
+#   It takes two arguments:
+#     - head: The value of the first element of the list.
+#     - tail: The tail of the list, which is another List object.
+# - Nil: This constructor represents an empty list. It takes no arguments and is used
+# to indicate the end of the list.
 #
-# Representação Visual:
-# Uma lista pode ser visualizada como uma cadeia de nós, onde cada nó contém um valor e 
-# uma referência ao próximo nó. O último nó, que não aponta para nenhum outro nó, 
-# é representado por Nil.
+# Visual Representation:
+# A list can be visualized as a chain of nodes, where each node contains a value and
+# a reference to the next node. The last node, which does not point to any other node,
+# is represented by Nil.
 #
-# Exemplo:
+# Example:
 # Cons(1, Cons(2, Cons(3, Nil))) -> 1 -> 2 -> 3 -> Nil
 #
-# Neste exemplo, temos uma lista contendo os valores 1, 2 e 3, terminando com Nil.
+# In this example, we have a list containing the values 1, 2, and 3, ending with Nil.
 #
-# Notação Alternativa:
-# Para simplificar a leitura e a escrita de listas, podemos utilizar uma notação mais familiar, 
-# onde os elementos são listados entre colchetes e separados por vírgulas.
+# Alternative Notation:
+# To simplify the reading and writing of lists, we can use a more familiar notation,
+# where elements are listed between square brackets and separated by commas.
 #
-# Exemplos:
-# - [1, 2, 3] é equivalente a Cons(1, Cons(2, Cons(3, Nil))).
-# - [] é equivalente a Nil, representando uma lista vazia.
-# - [1] é equivalente a Cons(1, Nil), representando uma lista com um único elemento.
+# Examples:
+# - [1, 2, 3] is equivalent to Cons(1, Cons(2, Cons(3, Nil))).
+# - [] is equivalent to Nil, representing an empty list.
+# - [1] is equivalent to Cons(1, Nil), representing a list with a single element.
 #
-# Exemplo de Uso em Código:
-# A seguir, um exemplo de uma função main que retorna a lista ["Hello", "world!"]:
+# Example of Usage in Code:
+# Below is an example of a main function that returns the list ["Hello", "world!"]:
 #
 
 def main():
   return List/Cons("Hello", List/Cons("world!", List/Nil))
 
-# Neste exemplo, a função main constrói uma lista com dois elementos, 
-# "Hello" e "world!", utilizando os construtores Cons e Nil.
-
+# In this example, the main function constructs a list with two elements,
+# "Hello" and "world!", using the Cons and Nil constructors.
 

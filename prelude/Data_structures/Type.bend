@@ -1,43 +1,43 @@
-# Tipos em Bend
+# Types in Bend
 #
-# Em Bend, tipos são fundamentais para definir a estrutura e a natureza dos dados que 
-# um programa pode manipular. Eles permitem a criação de estruturas de dados complexas 
-# e ajudam a garantir a integridade e a consistência dos dados ao longo da execução do programa.
+# In Bend, types are fundamental for defining the structure and nature of the data that
+# a program can manipulate. They allow the creation of complex data structures
+# and help ensure data integrity and consistency throughout the program's execution.
 #
-# Definindo Tipos
+# Defining Types
 #
-# Para definir um tipo em Bend, utilizamos a palavra-chave type. Um tipo pode ter múltiplos 
-# construtores, cada um com seus próprios campos. Aqui está a sintaxe básica para a definição de um tipo:
+# To define a type in Bend, we use the `type` keyword. A type can have multiple
+# constructors, each with its own fields. Here is the basic syntax for defining a type:
 #
 # type TypeName:
 #   Constructor1 {value, field1, field2, ...}
 #   Constructor2 {field1, field2, ...}
 #   ...
 #
-# Exemplo: Definindo um Tipo Vector
+# Example: Defining a Vector Type
 #
-# Vamos criar um tipo `Vector` que representa uma lista de elementos. 
-# Cada elemento é um par de um número inteiro e um valor associado. Aqui está a definição do tipo `Vector`:
+# Let's create a `Vector` type that represents a list of elements.
+# Each element is a pair of an integer and an associated value. Here is the definition of the `Vector` type:
 
 type Vector:
   Nil
   Cons {n, head, ~tail}
 
-# Neste exemplo, o tipo `Vector` tem dois construtores: 
-# - `Nil`, que representa uma lista vazia;
-# - `Cons`, que representa um elemento da lista.
+# In this example, the `Vector` type has two constructors:
+# - `Nil`, which represents an empty list;
+# - `Cons`, which represents an element of the list.
 #
-# O construtor `Cons` tem três campos:
-# - `n`, que é um número inteiro;
-# - `head`, que é o valor associado; e
-# - `tail`, que é a cauda da lista.
+# The `Cons` constructor has three fields:
+# - `n`, which is an integer;
+# - `head`, which is the associated value; and
+# - `tail`, which is the rest of the list.
 #
-# Exemplo Adicional: Dias da Semana
+# Additional Example: Days of the Week
 #
-# A seguir, apresentamos um exemplo de definição de um tipo para representar os dias 
-# da semana e uma função que determina o próximo dia útil:
+# Here is an example of defining a type to represent the days
+# of the week and a function that determines the next weekday:
 #
-# Definição do Tipo `Day`
+# Defining the `Day` Type
 
 type Day:
   monday
@@ -48,13 +48,12 @@ type Day:
   saturday
   sunday
 
-# Aqui definimos o tipo `Day` com sete construtores, um para cada dia da semana.
+# Here we define the `Day` type with seven constructors, one for each day of the week.
 #
-# Função `NextWeekday`
+# `NextWeekday` Function
 #
-# A função `NextWeekday` recebe um valor do tipo `Day` e retorna o próximo dia útil. 
-# Utilizamos correspondência de padrões (pattern matching) para definir o comportamento 
-# da função para cada dia da semana.
+# The `NextWeekday` function takes a value of type `Day` and returns the next weekday.
+# We use pattern matching to define the behavior of the function for each day of the week.
 
 def NextWeekday(day):
   match day:
@@ -69,34 +68,33 @@ def NextWeekday(day):
     case _:
       return Day/monday
     
-# Neste exemplo, definimos a função `NextWeekday` que mapeia cada dia da semana para o próximo dia útil.
-# Note que `sexta-feira`, `sábado` e `domingo` devem retornar `segunda-feira`,
-# pois consideramos apenas dias úteis, por isso o padrão `_` no final.
+# In this example, we define the `NextWeekday` function that maps each day of the week to the next weekday.
+# Note that Friday, Saturday, and Sunday should return Monday,
+# as we only consider weekdays, hence the `_` pattern at the end.
 #
-# Criando Instâncias de Tipos
+# Creating Instances of Types
 #
-# Para criar uma instância de um tipo definido, utilizamos seus construtores. 
-# Aqui está um exemplo de como criar um vetor com três elementos:
+# To create an instance of a defined type, we use its constructors.
+# Here is an example of how to create a vector with three elements:
 
 def ex1():
-  # Cria um vetor com três elementos: (2, "a"), (1, "b") e (0, "c")
+  # Create a vector with three elements: (2, "a"), (1, "b"), and (0, "c")
   my_vector = Vector/Cons(2, "a", Vector/Cons(1, "b", Vector/Cons(0, "c", Vector/Nil)))
   return my_vector
 
-# Neste exemplo, criamos um vetor com três elementos: (2, "a"), (1, "b") e (0, "c").
-# O vetor é construído a partir do final, começando com o último elemento e adicionando os elementos anteriores.
-# O resultado é uma lista encadeada de elementos, onde cada elemento aponta para o próximo.
-# A criação de tipos em Bend é uma maneira poderosa de estruturar e manipular dados complexos.
+# In this example, we create a vector with three elements: (2, "a"), (1, "b"), and (0, "c").
+# The vector is built from the end, starting with the last element and adding the previous elements.
+# The result is a linked list of elements, where each element points to the next.
+# Creating types in Bend is a powerful way to structure and manipulate complex data.
 
-# Testando a Função
+# Testing the Function
 #
-# Para verificar o funcionamento da função `NextWeekday`, criamos uma função `Main` que 
-# testa a função com alguns exemplos:
+# To verify the functionality of the `NextWeekday` function, we create a `main` function that
+# tests the function with some examples:
 
 def main():
   my_vector = ex1()
-  # Dois dias úteis após o sábado
-  nextWeekday = NextWeekday (NextWeekday (Day/saturday))
+  # Two weekdays after Saturday
+  nextWeekday = NextWeekday(NextWeekday(Day/saturday))
   return nextWeekday
-
-# Ao executar o código acima, o resultado esperado é `Day/tuesday`.
+# When running the code above, the expected result is `Day/tuesday`.

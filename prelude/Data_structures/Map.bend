@@ -1,71 +1,69 @@
-# Mapas em Bend
-# Em Bend, um Mapa representa uma árvore com valores armazenados nos ramos. 
-# É destinado a ser usado como uma estrutura de dados de mapa eficiente com chaves inteiras 
-# e operações de leitura e escrita O(log n).
+# Maps in Bend
+# In Bend, a Map represents a tree with values stored in the branches.
+# It is intended to be used as an efficient map data structure with integer keys
+# and O(log n) read and write operations.
 
-# Definindo Mapas
-# Para definir um Mapa em Bend, utilizamos a palavra-chave type. 
-# Um Mapa pode ter dois construtores: Node e Leaf.
+# Defining Maps
+# To define a Map in Bend, we use the type keyword.
+# A Map can have two constructors: Node and Leaf.
 
-# Exemplo: Definindo um Mapa
+# Example: Defining a Map
 # type Map:
 #   Node { value, ~left, ~right }
 #   Leaf
 
-# - Node { value ~left ~right }: 
-#     Representa um nó do mapa com um valor e subárvores esquerda e direita. 
-#     Nós vazios têm * armazenado no campo de valor.
+# - Node { value, ~left, ~right }: 
+#     Represents a map node with a value and left and right subtrees.
+#     Empty nodes have * stored in the value field.
 # - Leaf: 
-#     Representa uma porção não escrita e vazia do mapa.
+#     Represents an unwritten and empty portion of the map.
 
-# Sintaxe
-# Aqui está como você cria um novo Mapa com alguns valores iniciais:
+# Syntax
+# Here is how you create a new Map with some initial values:
 
 # { 0: 4, `hi`: "bye", 'c': 2 + 3 }
-# As chaves devem ser números U24, e podem ser dadas como literais ou qualquer 
-# outra expressão que avalie para um U24.
+# Keys must be U24 numbers and can be given as literals or any
+# other expression that evaluates to a U24.
 
-# Os valores podem ser qualquer coisa, mas armazenar dados de tipos diferentes 
-# em um Mapa tornará mais difícil a sua compreensão.
+# Values can be anything, but storing data of different types
+# in a Map will make it harder to understand.
 
-# Você pode ler e escrever um valor de um mapa com o operador []:
+# You can read and write a value from a map with the [] operator:
 
 # map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
 # map[0] = "not zero"
 # map[1] = 2
 # map[2] = 3
 # map[3] = map[1] + map[map[1]]
-# Aqui, map deve ser o nome da variável Mapa, e as chaves dentro de [] 
-# podem ser qualquer expressão que avalie para um U24.
+# Here, map should be the name of the Map variable, and the keys inside []
+# can be any expression that evaluates to a U24.
 
-# Mapa é uma árvore binária eficiente com chaves u24. 
-# Oferece operações de leitura e escrita O(log n).
+# Map is an efficient binary tree with U24 keys.
+# It offers O(log n) read and write operations.
 
-# { 0: 4, 'c': 2 + 3 , ... } # Mapa
+# { 0: 4, 'c': 2 + 3 , ... } # Map
 
-# Correspondência de Padrões
-# Podemos fazer correspondência de padrões com Mapas:
+# Pattern Matching
+# We can do pattern matching with Maps:
 
 # map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
 
-# ## Atualizando Valores Usando Chaves
-# Podemos atualizar valores usando chaves:
+# ## Updating Values Using Keys
+# We can update values using keys:
 
-# map[0] = "not zero"      # Atualiza o valor na chave 0
-# map[1] = 2               # Atualiza o valor na chave 1
-# map[2] = 3               # Atualiza o valor na chave 2
+# map[0] = "not zero"      # Updates the value at key 0
+# map[1] = 2               # Updates the value at key 1
+# map[2] = 3               # Updates the value at key 2
 
-# ## Usando Chaves em Operações
-# Podemos usar chaves em operações:
+# ## Using Keys in Operations
+# We can use keys in operations:
 
-# map[3] = map[1] + map[map[1]]  # Usa o valor na chave 1 e o valor na chave map[1]
+# map[3] = map[1] + map[map[1]]  # Uses the value at key 1 and the value at key map[1]
 
-# As chaves podem ser literais ou expressões que avaliam para u24.
-# Os valores podem ser de qualquer tipo, mas a mistura de tipos pode tornar o raciocínio sobre o mapa mais difícil.
+# Keys can be literals or expressions that evaluate to u24.
+# Values can be of any type, but mixing types can make reasoning about the map more difficult.
 
 def main():
   map = { 0: "zero", 1: "one", 2: "two", 3: "three" }
-  return map[2] # deve retornar "two"
-
-
+  return map[2] # should return "two"
 

@@ -1,63 +1,62 @@
-# Funções em Bend
+# Functions in Bend
 
-# Bend é uma linguagem que suporta a definição de funções de uma maneira concisa e expressiva.
-# As funções são blocos de código reutilizáveis que realizam operações específicas e retornam valores.
+# Bend is a language that supports defining functions in a concise and expressive manner.
+# Functions are reusable blocks of code that perform specific operations and return values.
 
-# Definição de Funções
+# Function Definition
 
-# As funções são definidas usando a palavra-chave `def` seguida pelo nome da função, 
-# parâmetros entre parênteses e um corpo.
+# Functions are defined using the `def` keyword followed by the function name,
+# parameters in parentheses, and a body.
 
 def sum(a, b):
   result = a + b
   return result
 
-# A função `soma` recebe dois parâmetros `a` e `b`, e retorna a soma dos dois.
+# The `sum` function takes two parameters `a` and `b`, and returns their sum.
 
-# Funções Anônimas (Lambdas)
+# Anonymous Functions (Lambdas)
 
-# Bend suporta funções anônimas, também conhecidas como lambdas, que são definidas usando 
-# a sintaxe `lambda x: expressão`.
+# Bend supports anonymous functions, also known as lambdas, which are defined using
+# the `lambda x: expression` syntax.
 
-# Exemplo de uma função anônima que soma um número:
+# Example of an anonymous function that increments a number:
 def lambda_inc:
   inc = lambda x: x + 1
   return inc
 
-# Esta função pode ser chamada da mesma maneira que uma função nomeada:
-# resultado = lambda_soma(5)  # resultado é 6
+# This function can be called in the same way as a named function:
+# result = lambda_inc(5)  # result is 6
 
-# Funções de Alta Ordem
+# Higher-Order Functions
 
-# Funções de alta ordem são aquelas que aceitam outras funções como parâmetros ou retornam funções.
+# Higher-order functions are those that accept other functions as parameters or return functions.
 
-# Exemplo de função que aceita outra função como parâmetro:
+# Example of a function that accepts another function as a parameter:
 def apply_two_times(f, x):
   return f(f(x))
 
-# Usando a função `aplicar_duas_vezes` com uma função anônima:
-# resultado = aplicar_duas_vezes(lambda x: x + 1, 5)  # resultado é 7
+# Using the `apply_two_times` function with an anonymous function:
+# result = apply_two_times(lambda x: x + 1, 5)  # result is 7
 
-# Recursão
+# Recursion
 
-# Bend é uma linguagem que suporta recursão, permitindo que uma função chame a si mesma.
+# Bend supports recursion, allowing a function to call itself.
 
-# Exemplo de função recursiva para calcular o fatorial de um número:
+# Example of a recursive function to calculate the factorial of a number:
 def factorial(n):
   if n == 0:
     return 1
   else:
     return n * factorial(n - 1)
 
-# Funções recursivas em Bend são otimizadas para recursão de cauda, resultando em melhor 
-# desempenho e uso eficiente de memória.
+# Recursive functions in Bend are optimized for tail recursion, resulting in better
+# performance and efficient memory usage.
 
-# Padrões de Correspondência
+# Pattern Matching
 
-# As funções podem utilizar padrões de correspondência para decomporem valores e 
-# tomarem decisões com base nesses valores.
+# Functions can use pattern matching to decompose values and make decisions based on those values.
 
-# Exemplo de função que utiliza padrões de correspondência para calcular o fatorial:
+# Example of a function that uses pattern matching to calculate the factorial:
 def factorial_match(n):
   switch n:
     case 0:
@@ -66,30 +65,31 @@ def factorial_match(n):
       return n * factorial_match(n - 1)
 
 # Currying
-# Em Bend, as funções podem ser parcialmente aplicadas através do currying, 
-# permitindo que uma função com múltiplos parâmetros seja transformada em uma 
-# cadeia de funções que aceitam um único parâmetro.
+# In Bend, functions can be partially applied through currying,
+# allowing a function with multiple parameters to be transformed into a
+# chain of functions that each take a single parameter.
 
-# Exemplo de função curried:
+# Example of a curried function:
 def curried_sum(a):
   return lambda b: a + b
 
-# Usando a função curried:
+# Using the curried function:
 # sum5    = curried_sum(5)
-# sum5_3  = sum5(3)  # resultado é 8
+# sum5_3  = sum5(3)  # result is 8
 
-# Conclusão
+# Conclusion
 
-# Funções em Bend são poderosas e flexíveis, permitindo a criação de código modular e reutilizável.
-# Com suporte para funções anônimas, recursão, currying e padrões de correspondência, 
-# Bend facilita a escrita de funções concisas e expressivas.
+# Functions in Bend are powerful and flexible, allowing for the creation of modular and reusable code.
+# With support for anonymous functions, recursion, currying, and pattern matching,
+# Bend facilitates writing concise and expressive functions.
 
 def main():
-  sum = sum(2, 3)
-  lambda_inc5 = lambda_inc(5)
-  higher_order = apply_two_times(lambda_inc, 5)
-  recursive = factorial(5)
-  factorial_match = factorial_match(5)
+  sum_result = sum(2, 3)
+  lambda_inc_result = lambda_inc(5)
+  higher_order_result = apply_two_times(lambda_inc, 5)
+  recursive_result = factorial(5)
+  factorial_match_result = factorial_match(5)
   sum5 = curried_sum(5)
-  sum5_3 = sum5(3)
-  return sum5_3
+  sum5_3_result = sum5(3)
+  return sum5_3_result
+

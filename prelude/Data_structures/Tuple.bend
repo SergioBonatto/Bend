@@ -1,15 +1,15 @@
-# Tuplas em Bend
-# Em Bend, uma tupla pode conter dois ou mais elementos. Os elementos são separados por vírgulas.
+# Tuples in Bend
+# In Bend, a tuple can contain two or more elements. The elements are separated by commas.
 #
-# Definindo Tuplas
-# Para definir uma tupla, utilizamos parênteses e separamos os elementos por vírgulas.
+# Defining Tuples
+# To define a tuple, we use parentheses and separate the elements with commas.
 #
-# Exemplo: Definindo Tuplas Simples
-# Aqui estão alguns exemplos de definição de tuplas:
+# Example: Defining Simple Tuples
+# Here are some examples of tuple definitions:
 
-# (1, 2) # tupla com dois elementos
+# (1, 2) # tuple with two elements
 
-# Podemos fazer pattern matching (correspondência de padrões) em tuplas:
+# We can do pattern matching on tuples:
 # (fst, snd, ..., lst) = ("Hi", 2, ..., lst)
 # # fst = "Hi"
 # # snd = 2
@@ -20,10 +20,9 @@
 # # fst = 1
 # # snd = ("Hello", ..., lst)
 
-# Criando e Manipulando Tuplas
-# Para criar e manipular tuplas, utilizamos a sintaxe de parênteses e vírgulas. 
-# A seguir, um exemplo de funções que retornam os primeiros, 
-# segundos e terceiros elementos de uma tupla:
+# Creating and Manipulating Tuples
+# To create and manipulate tuples, we use the syntax of parentheses and commas.
+# Below is an example of functions that return the first, second, and third elements of a tuple:
 
 def return_fst(t):
   (fst, snd) = t
@@ -37,16 +36,17 @@ def return_trd(t):
   (fst, snd, trd) = t
   return trd
 
-# Função principal que demonstra o uso das funções acima
+# Main function demonstrating the usage of the above functions
 def main():
   tupl = (1, 2, 3, 4)
   fst = return_fst(tupl) # 1
-  snd = return_snd(tupl) # (2, (3, 4)))
+  snd = return_snd(tupl) # (2, (3, 4))
   trd = return_trd(tupl) # (3, 4)
   return trd # (3, 4)
 
-# Neste exemplo:
-# - Criamos uma tupla `tupl` com quatro elementos: (1, 2, 3, 4).
-# - Utilizamos a função `return_fst` para retornar o primeiro elemento da tupla, isto é, 1.
-# - Utilizamos a função `return_snd` para retornar o segundo elemento da tupla, isto é, (2, (3, 4)).
-# - Utilizamos a função `return_trd` para retornar o terceiro elemento da tupla, isto é, (3, 4).
+# In this example:
+# - We create a tuple `tupl` with four elements: (1, 2, 3, 4).
+# - We use the function `return_fst` to return the first element of the tuple, which is 1.
+# - We use the function `return_snd` to return the second element of the tuple, which is (2, (3, 4)).
+# - We use the function `return_trd` to return the third element of the tuple, which is (3, 4).
+

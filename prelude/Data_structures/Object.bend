@@ -1,14 +1,13 @@
-# Objetos em Bend
-# Em Bend, um objeto define um tipo com um único construtor, similar a uma estrutura (struct), 
-# um registro (record) ou uma classe (class). Objetos permitem a criação de 
-# tipos de dados complexos com múltiplos campos.
+# Objects in Bend
+# In Bend, an object defines a type with a single constructor, similar to a structure (struct),
+# a record, or a class. Objects allow the creation of complex data types with multiple fields.
 #
-# Definindo Objetos
-# Para definir um objeto em Bend, utilizamos a palavra-chave `object`. 
-# A definição de um objeto especifica os campos que ele possui.
+# Defining Objects
+# To define an object in Bend, we use the `object` keyword.
+# The definition of an object specifies the fields it has.
 #
-# Exemplo: Definindo Objetos Simples
-# Aqui estão alguns exemplos de definição de objetos:
+# Example: Defining Simple Objects
+# Here are some examples of object definitions:
 
 # object Pair { fst, snd }
 
@@ -16,12 +15,12 @@
 
 # object Vec { len, data }
 
-# Nesses exemplos, definimos três objetos: Pair, Function e Vec, cada um com seus respectivos campos.
+# In these examples, we define three objects: Pair, Function, and Vec, each with their respective fields.
 #
-# O construtor criado a partir dessa definição tem o mesmo nome que o tipo.
+# The constructor created from this definition has the same name as the type.
 #
-# Exemplo: Definindo um Objeto Account
-# Vamos definir um objeto Account com dois campos: number e balance.
+# Example: Defining an Account Object
+# Let's define an Account object with two fields: number and balance.
 #
 
 object Account {
@@ -29,16 +28,16 @@ object Account {
   balance
 }
 
-# Neste exemplo, definimos um objeto Account com dois campos: number e balance.
-# O construtor Account tem dois parâmetros: number e balance.
+# In this example, we define an Account object with two fields: number and balance.
+# The Account constructor has two parameters: number and balance.
 #
-# Criando e Manipulando Objetos
-# Para criar uma instância de um objeto, utilizamos seu construtor. 
-# Podemos acessar e manipular os campos de um objeto utilizando a palavra-chave `open`.
+# Creating and Manipulating Objects
+# To create an instance of an object, we use its constructor.
+# We can access and manipulate the fields of an object using the `open` keyword.
 #
-# Exemplo: Criando uma Instância de Account
-# A seguir, um exemplo de funções `createAccount1` e `createAccount2` que criam 
-# instâncias do objeto Account:
+# Example: Creating an Instance of Account
+# Below is an example of `createAccount1` and `createAccount2` functions that create
+# instances of the Account object:
 
 def createAccount1():
   return Account { number: "1234-56", balance: 10000.00 } 
@@ -46,20 +45,20 @@ def createAccount1():
 def createAccount2():
   return Account { number: "1234-57", balance: 20000.00 }
 
-# Função para sacar um valor de uma conta
-# Esta função utiliza o campo `balance` do objeto `Account` para calcular o saldo após o saque.
+# Function to withdraw an amount from an account
+# This function uses the `balance` field of the `Account` object to calculate the balance after withdrawal.
 def withdraw(amount, account):
   open Account: account
   return ("Actual balance", (account.balance - amount))
 
-# Função principal que demonstra o uso das funções acima
+# Main function demonstrating the usage of the above functions
 def main():
-  accont1 = createAccount1()
-  accont2 = createAccount2()
-  return withdraw(6000.00, accont1)
+  account1 = createAccount1()
+  account2 = createAccount2()
+  return withdraw(6000.00, account1)
 
-# Neste exemplo:
-# - Utilizamos `open` para acessar os campos number e balance do objeto Account.
-# - Utilizamos `return` para retornar uma instância do objeto Account com os 
-# campos number e balance preenchidos com os valores fornecidos.
+# In this example:
+# - We use `open` to access the number and balance fields of the Account object.
+# - We use `return` to return an instance of the Account object with the
+# fields number and balance filled with the provided values.
 

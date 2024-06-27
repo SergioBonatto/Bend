@@ -1,10 +1,10 @@
-# Grafos em Bend
-# Em Bend, uma forma eficiente de criar um grafo é usando um mapa de listas de pares. 
-# Cada chave do mapa representa um nó, e a lista de pares associada a essa chave representa 
-# as arestas conectando esse nó a outros nós, juntamente com as distâncias associadas.
+# Graphs in Bend
+# In Bend, an efficient way to create a graph is by using a map of lists of pairs.
+# Each key in the map represents a node, and the list of pairs associated with that key represents
+# the edges connecting that node to other nodes, along with the associated distances.
 
-# Exemplo: Construindo um Grafo em Bend
-# Aqui está um exemplo de como podemos construir um grafo em Bend usando um mapa de listas de pares:
+# Example: Building a Graph in Bend
+# Here is an example of how we can build a graph in Bend using a map of lists of pairs:
 
 def main():
   graph = {
@@ -15,19 +15,17 @@ def main():
   }
   return graph
 
-# Neste exemplo, temos um grafo com quatro nós ("a", "b", "c", "d") e várias 
-# arestas com distâncias associadas.
-# - O nó 'a' está a uma distância 4 do nó 'b' e a uma distância 1 do nó 'c'.
-# - O nó 'b' está a uma distância 4 do nó 'a', 13 do nó 'c' e a uma distância 2 do nó 'd'.
-# - O nó 'c' está a uma distância 1 do nó 'a', 13 do nó 'b' e a uma distância 5 do nó 'd'.
-# - O nó 'd' está a uma distância 2 do nó 'b' e a uma distância 5 do nó 'c'.
+# In this example, we have a graph with four nodes ("a", "b", "c", "d") and several
+# edges with associated distances.
+# - Node 'a' is at a distance of 4 from node 'b' and at a distance of 1 from node 'c'.
+# - Node 'b' is at a distance of 4 from node 'a', 13 from node 'c', and at a distance of 2 from node 'd'.
+# - Node 'c' is at a distance of 1 from node 'a', 13 from node 'b', and at a distance of 5 from node 'd'.
+# - Node 'd' is at a distance of 2 from node 'b' and at a distance of 5 from node 'c'.
 
-# Visualmente, o grafo pode ser representado da seguinte forma:
+# Visually, the graph can be represented as follows:
 #
 #  a - 4 - b
 #  |     / |
 #  1   13  2
 #  | /     |
 #  c - 5 - d
-#
-

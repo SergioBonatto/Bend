@@ -1,31 +1,32 @@
-# Árvores em Bend
-# Bend possui suporte nativo para árvores, uma estrutura de dados hierárquica 
-# com nós conectados por arestas.
+# Trees in Bend
+# Bend has native support for trees, a hierarchical data structure
+# with nodes connected by edges.
 
-# Definição de Árvores
-# Em Bend, uma árvore (`Tree`) é definida com dois construtores:
-# - `Node { ~left, ~right }`: Representa um nó da árvore com subárvores à esquerda e à direita.
-# - `Leaf { value }`: Representa uma folha da árvore que armazena um valor.
+# Tree Definition
+# In Bend, a tree (`Tree`) is defined with two constructors:
+# - `Node { ~left, ~right }`: Represents a tree node with left and right subtrees.
+# - `Leaf { value }`: Represents a tree leaf that stores a value.
 
-# As árvores são ideais para algoritmos que se beneficiam de recursão paralela, 
-# pois permitem dividir problemas grandes em subproblemas menores.
+# Trees are ideal for algorithms that benefit from parallel recursion,
+# as they allow large problems to be divided into smaller subproblems.
 
-# Sintaxe para Árvores
-# Bend fornece o operador `![]` para criar ramos de árvore e o operador `!` para criar 
-# uma folha de árvore.
-# - `![a, b]` é equivalente a `Tree/Node { left: a, right: b }`
-# - `!x` é equivalente a `Tree/Leaf { value: x }`
+# Tree Syntax
+# Bend provides the `![]` operator to create tree branches and the `!` operator to create
+# a tree leaf.
+# - `![a, b]` is equivalent to `Tree/Node { left: a, right: b }`
+# - `!x` is equivalent to `Tree/Leaf { value: x }`
 
-# Exemplo: Construindo uma Árvore em Bend
+# Example: Building a Tree in Bend
 def main():
   tree = ![![!1, !2], ![!3, !4]]
   return tree
-# Neste exemplo, criamos uma árvore binária com folhas contendo os valores 1, 2, 3 e 4.
-# representando a seguinte árvore:
+# In this example, we create a binary tree with leaves containing the values 1, 2, 3, and 4,
+# representing the following tree:
 
-#      nó
-#    /   \
-#   nó    nó
-#  / \   / \
-# 1   2 3   4
+#      node
+#    /     \
+#   node    node
+#  /   \   /   \
+# 1     2 3     4
 #
+

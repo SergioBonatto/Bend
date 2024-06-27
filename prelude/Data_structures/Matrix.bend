@@ -1,23 +1,24 @@
-# Matrizes em Bend
+# Matrices in Bend
 
-# Em Bend, uma forma comum de construir matrizes é usando listas de listas, 
-# uma vez que não é um tipo nativo. Cada lista interna representa uma linha da matriz.
+# In Bend, a common way to construct matrices is by using lists of lists,
+# as it is not a native type. Each inner list represents a row of the matrix.
 
-# Exemplo: Construindo uma Matriz em Bend
-# Aqui está um exemplo de como podemos construir uma matriz em Bend usando listas de listas:
+# Example: Building a Matrix in Bend
+# Here is an example of how we can build a matrix in Bend using lists of lists:
 
-matriz = [
+matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9]
 ]
 
-# Neste exemplo, temos uma matriz 3x3 com valores de 1 a 9 organizados em três linhas e três colunas.
-# Podemos acessar os elementos da matriz usando índices duplos. Por exemplo, `matriz[0][0]` 
-# nos dá o elemento na primeira linha e primeira coluna, que é 1.
+# In this example, we have a 3x3 matrix with values from 1 to 9 organized into three rows and three columns.
+# We can access the elements of the matrix using double indices. For example, `matrix[0][0]`
+# gives us the element in the first row and first column, which is 1.
 
-# Esta é uma maneira flexível e conveniente de representar matrizes em Bend, 
-# permitindo fácil acesso aos elementos e manipulação das estruturas de dados.
+# This is a flexible and convenient way to represent matrices in Bend,
+# allowing easy access to elements and manipulation of data structures.
 
 def main():
-  return matriz
+  return matrix
+
