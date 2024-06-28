@@ -17,8 +17,8 @@
 # to change the value it stores during the execution of the program.
 
 # Use in Mathematical Expressions
-# Variables can be used in mathematical expressions and to store 
-# return values from functions.
+# Variables can store values and perform calculations.
+# They can also hold the return values from functions.
 
 # Example of Variables in Bend
 # Below is an example that demonstrates the declaration and use of variables in Bend:
