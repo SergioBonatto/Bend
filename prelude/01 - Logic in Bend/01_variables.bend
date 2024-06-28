@@ -50,13 +50,13 @@ def main():
 # - `function` stores a lambda function that adds 1 to its argument.
 # - `result` stores the value returned by the `function` when applied to `integer`.
 
-# Summary
-# - Variables are declared using the equals sign `=`.
-# - They are dynamically typed.
-# - They are case-sensitive.
-# - They can be reassigned.
-# - They can be used in mathematical expressions and to store return values from functions.
+# Variables:
+# - are declared using the `=` (equals) sign;
+# - dynamically typed;
+# - case-sensitive.
+# - can be reassigned;
+# - store values and perform calculations;
+# - hold return values from functions.
 
 # With these features, variables in Bend provide a flexible and powerful way 
 # to manage data and logic in your programs.
-
