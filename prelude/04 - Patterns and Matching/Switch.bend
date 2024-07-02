@@ -32,7 +32,9 @@ def switch_example(x):
 # - Se `x` for `1`, retorna `7`.
 # - Para todos os outros valores (`_`), retorna `x - 2`.
 
-# No último caso, o valor do predecessor está disponível com o nome `bound_var-next_num`, onde `bound_var` é a variável definida pela condição e `next_num` é o valor esperado do próximo caso. Vamos detalhar isso com um exemplo mais específico.
+# No último caso, o valor do predecessor está disponível com o nome `bound_var-next_num`, 
+# onde `bound_var` é a variável definida pela condição e `next_num` é o valor esperado do 
+# próximo caso. Vamos detalhar isso com um exemplo mais específico.
 
 # Implementação do `switch` usando `if-else`
 

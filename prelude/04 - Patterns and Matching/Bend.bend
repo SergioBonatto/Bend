@@ -157,6 +157,13 @@ def repeat(target):
 # def fibonacci():
 #   return 
 
+def main():
+  tree = create_tree()
+  loop = loop()
+  mult_var = mult_var()
+  repeat = repeat()
+  return  mult_var # Saída: (10, 20)
+
 # Conclusão
 # A construção `bend` em Bend é uma ferramenta poderosa e flexível para definir processos 
 # recursivos, gerar estruturas de dados complexas, manipulação de estado e emular 
@@ -165,6 +172,3 @@ def repeat(target):
 # complexas de maneira incremental e expressiva. Compreender suas regras e comportamento é 
 # essencial para utilizar todo o potencial desta construção e aplicar esses conceitos em 
 # problemas de programação do mundo real.
-
-
-
