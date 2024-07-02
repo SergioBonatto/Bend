@@ -420,6 +420,19 @@ with Result:
   return wrap(x * y)
 ```
 
+### Def
+
+Creates a local function visible in the current block capturing variables:
+
+```python
+def main:
+  y = 41
+  x = 1
+  def aux_add(x):
+    return x + y
+  return aux_add(x)
+```
+
 ## Expressions
 
 ### Variables
@@ -939,6 +952,20 @@ switch _ = condition {
 }
 ```
 
+It is possible to make if-chains using `elif`:
+
+```rust
+if condition1 {
+  0
+} elif condition2 {
+  1
+} elif condition3 {
+  2
+} else {
+  3
+}
+```
+
 ### Bend
 
 Bend can be used to create recursive data structures:
@@ -1001,7 +1028,7 @@ match x {
 ### With block
 
 ```rust
-Result/bind (Result/Ok val) nxt = (nxt val)
+Result/bind (Result/Ok val) nxt = ((undefer nxt) val)
 Result/bind err _nxt = err
 
 div a b = switch b {
@@ -1170,7 +1197,7 @@ The Tree literals `![]` and `!` are used to create values of the built-in type `
 The syntax above is desugared to:
 
 ```
-(Nat.succ (Nat.succ (Nat.succ List.nil)))
+(Nat/succ (Nat/succ (Nat/succ Nat/zero)))
 ```
 
 # Native HVM definitions
