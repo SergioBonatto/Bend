@@ -36,6 +36,40 @@ character = 'x'
 # A character literal is desugared to a 24-bit unsigned integer (`u24`).
 # This means each character can be treated as an integer corresponding to its Unicode code point.
 
+# Operations
+# There is also support for native operations. In "Imp" syntax they are infix operators 
+# and in "Fun" syntax they are written in reverse polish notation 
+# (like you'd call a normal function). Each operation takes two arguments and returns a new number.
+
+# In Fun syntax
+some_val = (+ (+ 7 4) (* 2 3))
+
+# These are the currently available operations:
+# | Operation | Description              | Accepted types | Return type       |
+# | --------- | ------------------------ | -------------- | ----------------- |
+# |  +        | Addition                 | U24, I24, F24  | Same as arguments |
+# |  -        | Subtraction              | U24, I24, F24  | Same as arguments |
+# |  *        | Multiplication           | U24, I24, F24  | Same as arguments |
+# |  /        | Division                 | U24, I24, F24  | Same as arguments |
+# |  %        | Modulo                   | U24, I24, F24  | Same as arguments |
+# |  ==       | Equality                 | U24, I24, F24  | U24               |
+# |  !=       | Inequality               | U24, I24, F24  | U24               |
+# |  <        | Less than                | U24, I24, F24  | U24               |
+# |  <=       | Less than or equal to    | U24, I24, F24  | U24               |
+# |  >        | Greater than             | U24, I24, F24  | U24               |
+# |  >=       | Greater than or equal to | U24, I24, F24  | U24               |
+# |  &        | Bitwise and              | U24, I24       | Same as arguments |
+# |  |        | Bitwise or               | U24, I24       | Same as arguments |
+# |  ^        | Bitwise xor              | U24, I24       | Same as arguments |
+# |  **       | Exponentiation           | F24            | F24               |
+
+# Functions
+# | Name           | Description                     | Accepted types | Return type |
+# | -------------- | ------------------------------- | -------------- | ----------- |
+# | log(x, base)   | Logarithm                       | F24            | F24         |
+# | atan2(x, y)    | 2 arguments arctangent (atan2f) | F24            | F24         |
+#
+
 # Testing the conversion function
 def main():
   ex01 = 'A'        # Should return 65 (Unicode value of 'A')
