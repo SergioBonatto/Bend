@@ -1,22 +1,23 @@
-# Os `switch` statements oferecem uma forma estruturada e eficiente de selecionar entre 
-# múltiplas condições baseadas em um valor específico. Em algumas linguagens de 
-# programação, o uso de declarações `switch` pode simplificar a lógica de controle de 
-# fluxo em comparação com múltiplos `if-else`.
+# `Switch` statements offer a structured and efficient way to select among multiple 
+# conditions based on a specific value. In some programming languages, using `switch` 
+# statements can simplify the control flow logic compared to multiple `if-else` 
+# statements.
 
-# Estrutura Básica do `switch`
-# A construção `switch` é usada para associar um nome de variável ao resultado de uma 
-# condição dada e ramificar para o caso que corresponde ao seu valor.
+# Basic Structure of `Switch`
+# The `switch` construct is used to associate a variable name with the result of a given 
+# condition and branch to the case that matches its value.
 
-# Ordenação de Casos 
-# Os casos devem ser listados do menor para o maior, começando em `0` e incrementando por `1`.
+# Ordering of Cases
+# The cases must be listed from smallest to largest, starting at `0` and incrementing by 
+# `1`.
 
-# Caso Padrão (`_`) 
-# O último caso deve ser `_`, que captura todos os valores não explicitamente enumerados.
+# Default Case (`_`)
+# The last case must be `_`, which catches all values not explicitly enumerated.
 
-# Valores Nativos 
-# Os `switch` statements só podem ser usados com valores numéricos nativos.
+# Native Values
+# `Switch` statements can only be used with native numeric values.
 
-# Vamos examinar um exemplo básico:
+# Let's examine a basic example:
 def switch_example(x):
   switch x:
     case 0:
@@ -26,19 +27,20 @@ def switch_example(x):
     case _:
       return x - 2
 
-# Neste exemplo, o `switch` verifica o valor de `x` e retorna um resultado baseado no caso 
-# correspondente:
-# - Se `x` for `0`, retorna `6`.
-# - Se `x` for `1`, retorna `7`.
-# - Para todos os outros valores (`_`), retorna `x - 2`.
+# In this example, the `switch` checks the value of `x` and returns a result based on
+#  the corresponding case:
+# - If `x` is `0`, it returns `6`.
+# - If `x` is `1`, it returns `7`.
+# - For all other values (`_`), it returns `x - 2`.
 
-# No último caso, o valor do predecessor está disponível com o nome `bound_var-next_num`, 
-# onde `bound_var` é a variável definida pela condição e `next_num` é o valor esperado do 
-# próximo caso. Vamos detalhar isso com um exemplo mais específico.
+# In the last case, the value of the predecessor is available with the name 
+# `bound_var-next_num`, where `bound_var` is the variable defined by the condition and
+# `next_num` is the expected value of the next case. Let's detail this with a more 
+# specific example.
 
-# Implementação do `switch` usando `if-else`
-
-# Podemos ver que a estrutura `switch` pode ser convertida para uma série de `if-else`:
+# Implementing `Switch` Using `If-Else`
+# We can see that the `switch` structure can be converted to a series of `if-else`
+#  statements:
 def switch_case(x):
   if x == 0:
     return 6
@@ -47,8 +49,8 @@ def switch_case(x):
   else:
     return x - 2
 
-# Exemplo Comparativo
-# Vamos ver como um `switch` pode ser equivalente a um `if-else` da seção anterior:
+# Comparative Example
+# Let's see how a `switch` can be equivalent to an `if-else` from the previous section:
 
 def if_else_equiv(condition):
   if condition == 0:
@@ -58,10 +60,9 @@ def if_else_equiv(condition):
     # else branch
     return 0
 
-# Equivalente ao `switch`:
-
+# Equivalent to `Switch`:
 def switch_equiv_expl(condition):
-  switch condition == 0: # explicito
+  switch condition == 0: # explicit
     case 0:
       # else branch
       return 0
@@ -70,20 +71,19 @@ def switch_equiv_expl(condition):
       return 1
 
 def switch_equiv_impl(condition):
-  switch condition: # implicito
+  switch condition: # implicit
     case 0:
       return 1
     case _:
       return 0
 
-# Ambas as funções acima implementam a mesma lógica, mas usando diferentes estruturas de 
-# controle.
-# Vamos testar a função:
+# Both functions above implement the same logic but using different control structures.
+# Let's test the function:
 def main():
   condition = (2 / 1)
   return switch_equiv_impl(condition) 
 
-### Conclusão
-# O uso de `switch` pode tornar seu código mais clara e legível quando lidamos com muitas 
-# condições e, é mais eficiente do que múltiplos `if-else`. É uma poderosa ferramenta de 
-# controle de fluxo que complementa as tradicionais estruturas `if-else`. 
+# Conclusion
+# Using `switch` can make your code clearer and more readable when dealing with many
+# conditions and is more efficient than multiple `if-else` statements. It is a powerful 
+# control flow tool that complements traditional `if-else` structures.

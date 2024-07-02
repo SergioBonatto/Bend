@@ -1,65 +1,65 @@
-# A construção `bend` em Bend é uma ferramenta poderosa e versátil, usada para criar 
-# estruturas de dados recursivas e emular processos iterativos de uma maneira declarativa 
-# e funcional. Ela permite definir um processo recursivo que constrói uma estrutura 
-# complexa passo a passo até que uma condição específica seja atendida. 
+# The `bend` construction in Bend is a powerful and versatile tool used to create 
+# recursive data structures and emulate iterative processes in a declarative and 
+# functional manner. It allows you to define a recursive process that builds a complex 
+# structure step-by-step until a specific condition is met.
 
-# Estrutura Básica
+# Basic Structure
+# The `bend` construction initializes a recursive process with an initial state and 
+# iterates until a specified condition is met. It is similar to an embedded recursive 
+# function.
 
-# A construção `bend` inicializa um processo recursivo com um estado inicial e itera até 
-# que uma condição especificada seja atendida. É semelhante a uma função recursiva embutida.
-
-# bend <variáveis_de_estado>:
-#   when <condição>:
-#     <operações_recursivas>
+# bend <state_variables>:
+#   when <condition>:
+#     <recursive_operations>
 #   else:
-#     <operações_de_terminação>
+#     <termination_operations>
 
-# Inicialização das Variáveis de Estado:
-# As variáveis de estado são inicializadas no cabeçalho do `bend`. Pode haver múltiplas 
-# variáveis de estado, cada uma com um valor inicial.
+# Initialization of State Variables
+# The state variables are initialized in the header of the `bend`. There can be multiple 
+# state variables, each with an initial value.
 
-# Estado Imutável: 
-# As variáveis de estado são tratadas de forma imutável, garantindo que cada passo 
-# recursivo tenha um estado consistente e previsível.
+# Immutable State
+# The state variables are treated immutably, ensuring that each recursive step has a 
+# consistent and predictable state.
 
-# Recursão Estruturada:
-# O `bend` inicia uma construção recursiva, inicializando um estado e executando um bloco 
-# de código até que uma condição de parada seja atendida.
+# Structured Recursion
+# The `bend` starts a recursive construction, initializing a state and executing a block 
+# of code until a stopping condition is met.
 
-# Recursividade Controlada:
-# A construção `bend` oferece um controle explícito sobre a recursividade, permitindo 
-# definir claramente quando a recursão deve continuar e quando deve parar.
+# Controlled Recursion
+# The `bend` construction offers explicit control over recursion, allowing you to clearly 
+# define when the recursion should continue and when it should stop.
 
-# Condição de Continuação:
-# A cláusula `when` define a condição sob a qual a recursão continua. Se a condição for 
-# verdadeira, as operações recursivas são executadas. Se a condição for falsa, as operações 
-# de terminação são executadas.
+# Continuation Condition
+# The `when` clause defines the condition under which the recursion continues. If the 
+# condition is true, the recursive operations are executed. If the condition is false, 
+# the termination operations are executed.
 
-# Operações Recursivas:
-# Dentro da cláusula `when`, a função `fork` é usada para chamar recursivamente o `bend` 
-# com novos valores para as variáveis de estado. O número de argumentos passados para `fork` 
-# deve corresponder ao número de variáveis de estado.
+# Recursive Operations
+# Within the `when` clause, the `fork` function is used to call the `bend` recursively 
+# with new values for the state variables. The number of arguments passed to `fork` must 
+# match the number of state variables.
 
-# Operações de Terminação:
-# Quando a condição não é mais verdadeira, as operações de terminação são executadas na 
-# cláusula `else`. Esta cláusula define o comportamento final e os valores retornados pela 
-# construção `bend`.
 
-# Construção Incremental:
-# Permite construir estruturas de dados recursivas adicionando camadas ou ramificações em 
-# cada chamada recursiva.
+# Termination Operations
+# When the condition is no longer true, the termination operations are executed in the 
+# `else` clause. This clause defines the final behavior and values returned by the `bend` 
+# construction.
 
-# Flexibilidade: 
-# A capacidade de manipular múltiplas variáveis de estado e construir diferentes tipos de 
-# estruturas de dados torna o `bend` uma ferramenta flexível e poderosa para diversas 
-# aplicações.
+# Incremental Construction
+# It allows building recursive data structures by adding layers or branches at each 
+# recursive call.
 
-# Versatilidade: 
-# Além de criar estruturas de dados recursivas, o `bend` pode ser usado para simular 
-# processos iterativos.
+# Flexibility
+# The ability to manipulate multiple state variables and construct different types of 
+# data structures makes the `bend` a flexible and powerful tool for various applications.
 
-# Exemplos de Uso
-# Exemplo 1: Criação de uma Árvore Binária
+# Versatility
+# Besides creating recursive data structures, the `bend` can be used to simulate 
+# iterative processes.
+
+# Usage Examples
+# Example 1: Creating a Binary Tree
 
 def create_tree():
   bend x = 0:
@@ -71,18 +71,17 @@ def create_tree():
       tree = !x
   return tree
 
-# Este código cria uma árvore binária 
-# - Inicializa `x = 0`.
-# - Continua a recursão enquanto `x < 3`.
-# - Dentro da cláusula `when`, `fork(x + 1)` chama recursivamente a função `bend` com um 
-# valor incrementado de `x`.
-# - Cria nós da árvore com `![left, right]`.
-# - Termina a recursão com `!x` quando `x >= 3`.
+# This code creates a binary tree:
+# - Initializes `x = 0`.
+# - Continues recursion while `x < 3`.
+# - Within the `when` clause, `fork(x + 1)` recursively calls the `bend` with an 
+# incremented value of `x`.
+# - Creates tree nodes with `![left, right]`.
+# - Ends recursion with `!x` when `x >= 3`.
 
-# Exemplo 2: Cálculo de Soma com Loop Emulado
-# bend é tão geral que podemos até usá-lo para emular um loop recursivamente iterando 
-# sobre um estado até que uma condição de término seja atendida. Por exemplo, este programa
-# Python:
+# Example 2: Sum Calculation with Emulated Loop
+# The `bend` is general enough to emulate a loop by recursively iterating over a state 
+# until a termination condition is met. For example, this Python program:
 
 # sum = 0
 # idx = 0
@@ -90,7 +89,8 @@ def create_tree():
 #   sum = idx + sum
 #   idx = idx + 1
 
-def loop():
+# can be rewritten using `bend`:
+def while():
   bend idx = 0:
     when idx < 10:
       sum = idx + fork(idx + 1)
@@ -98,17 +98,17 @@ def loop():
       sum = 0
   return sum
 
-# Este código emula um laço que soma inteiros de `0` a `9` utilizando recursão.
-# - Inicializa `idx = 0`.
-# - Continua a recursão enquanto `idx < 10`.
-# - Itera sobre `idx`, incrementando-o em `1`.
-# - Calcula a soma dos inteiros de `0` a `9`, adicionando o valor atual de `idx` à soma 
-# da próxima iteração.
-# - Termina a recursão retornando `0` quando `idx >= 10`.
+# This code emulates a loop that sums integers from `0` to `9` using recursion:
+# - Initializes `idx = 0`.
+# - Continues recursion while `idx < 10`.
+# - Iterates over `idx`, incrementing it by `1`.
+# - Computes the sum of integers from `0` to `9`, adding the current `idx` value to the 
+# sum of the next iteration.
+# - Ends recursion returning `0` when `idx >= 10`.
 
-# Múltiplas Variáveis de Estado
-# O `bend` pode manipular múltiplas variáveis de estado simultaneamente, permitindo 
-# processos recursivos complexos.
+# Multiple State Variables
+# The `bend` can handle multiple state variables simultaneously, enabling complex 
+# recursive processes.
 
 def mult_var():
   bend x = 1, y = 2:
@@ -118,16 +118,16 @@ def mult_var():
       result = (x, y)
   return result
 
-# Este código cria uma tupla  
-# - Inicializa `x = 1` e `y = 2`.
-# - Continua a recursão enquanto `x < 10` e `y < 20`.
-# - Incrementa `x` e `y` de maneira diferente em cada passo recursivo.
-# - Termina a recursão retornando os valores de `(x, y)` quando uma das condições não é 
-# mais verdadeira.
+# This code creates a tuple:
+# - Initializes `x = 1` and `y = 2`.
+# - Continues recursion while `x < 10` and `y < 20`.
+# - Increments `x` and `y` differently at each recursive step.
+# - Ends recursion returning the values of `(x, y)` when one of the conditions is no 
+# longer true.
 
-# Estruturas de Dados Recursivas
-# A construção `bend` pode ser usada para construir estruturas de dados recursivas 
-# complexas, como árvores, listas ligadas, e grafos.
+# Recursive Data Structures
+# The `bend` construction can be used to build complex recursive data structures, such as 
+# trees, linked lists, and graphs.
 
 def repeat(target):
   bend n = 0:
@@ -137,38 +137,41 @@ def repeat(target):
       list = []
   return list
 
-# Este código cria uma listas ligadas 
-# - Inicializa `n = 0`.
-# - Continua a recursão enquanto `n < target`.
-# - Cria nós da lista com `[n, (n + 1), ..., (n < target)]`.
-# - Termina a recursão com `[]` quando `n >= target`.
+# This code creates a linked list:
+# - Initializes `n = 0`.
+# - Continues recursion while `n < target`.
+# - Creates list nodes with `[n, (n + 1), ..., (n < target)]`.
+# - Ends recursion with `[]` when `n >= target`.
 
-# Exemplos Práticos e Exercícios
-# Para ajudar a solidificar a compreensão da construção `bend`, aqui estão alguns exemplos
-# práticos e exercícios:
+# Practical Examples and Exercises
 
-# Exemplo 1: Fatorial
-# Calcule o fatorial de um número usando `bend`.
-# def factorial():
-#   return 
+# Example 1: Factorial
+# Calculate the factorial of a number using `bend`.
 
-# Exemplo 2: Sequência de Fibonacci
-# Gere a sequência de Fibonacci até o 10º termo.
+# def factorial(n):
+  # return 
+
+# Example 2: Fibonacci Sequence
+# Generate the Fibonacci sequence up to the 10th term.
+
 # def fibonacci():
-#   return 
+  # return 
 
 def main():
   tree = create_tree()
-  loop = loop()
-  mult_var = mult_var()
-  repeat = repeat()
-  return  mult_var # Saída: (10, 20)
+  loop_sum = while()
+  mult_var_result = mult_var()
+  repeated_list = repeat(5)
+  # fact = factorial(5)  # Output: 120
+  # fib_10th = fibonacci()  # Output: 55 (10th Fibonacci number)
+  return repeated_list
 
-# Conclusão
-# A construção `bend` em Bend é uma ferramenta poderosa e flexível para definir processos 
-# recursivos, gerar estruturas de dados complexas, manipulação de estado e emular 
-# comportamentos iterativos de forma clara e expressiva. Ela combina elementos de 
-# programação funcional e manipulação recursiva de dados para construir estruturas 
-# complexas de maneira incremental e expressiva. Compreender suas regras e comportamento é 
-# essencial para utilizar todo o potencial desta construção e aplicar esses conceitos em 
-# problemas de programação do mundo real.
+
+# Conclusion
+# The `bend` construction in Bend is a powerful and flexible tool for defining recursive 
+# processes, generating complex data structures, state manipulation, and emulating 
+# iterative behaviors in a clear and expressive manner. It combines elements of 
+# functional programming and recursive data manipulation to build complex structures 
+# incrementally and expressively. Understanding its rules and behavior is essential to 
+# utilize the full potential of this construction and apply these concepts to real-world 
+# programming problems.

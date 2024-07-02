@@ -1,32 +1,30 @@
-# Os `fold` statements fornecem uma maneira poderosa de reduzir uma estrutura de dados,
-# aplicando uma função recursivamente e combinando os resultados. Outra linguagem que tem 
-# `fold` É Haskell que é uma técnica fundamental para operar em estruturas de dados, como 
-# listas e árvores. O `fold` em bend é equivalente ao `foldl` em Haskell.
+# `Fold` statements provide a powerful way to reduce a data structure by recursively 
+# applying a function and combining the results. Another language that has `fold` is 
+# Haskell, where it is a fundamental technique for operating on data structures like 
+# lists and trees. The `fold` in Bend is equivalent to `foldl` in Haskell.
 
+# Basic Structure of `Fold`
+# The `fold` structure reduces the given value based on the provided matching cases.
 
-# Estrutura Básica do `fold`
-# A estrutura `fold` reduz o valor dado com base nos casos de correspondência fornecidos.
+# Bound Fields
+# Just like in `match`, we can bind variable names to the corresponding values.
 
-# Campos Vinculados
-# Assim como em `match`, podemos vincular nomes de variáveis aos valores correspondentes.
+# Implicit `fold` Calls
+# For fields annotated with `~` in the type definition, the `fold` function is implicitly 
+# called.
 
-# Chamadas Implícitas de `fold`
-# Para campos anotados com `~` na definição do tipo, a função `fold` é chamada implicitamente.
-
-# Suponha uma definição de árvore onde os campos da subárvore são anotados com `~`:
+# Suppose a tree definition where the subtree fields are annotated with `~`:
 
 type BTree:
   Leaf
   Node {value, ~left, ~right}
 
-# Aqui, `Node` representa um nó interno da árvore com um valor e subárvores à esquerda e
-# à direita, enquanto `Leaf` representa uma folha da árvore.
+# Here, `Node` represents an internal tree node with a value and left and right subtrees, 
+# while `Leaf` represents a tree leaf.
 
-# #### Exemplo de `fold`
-
-# Com esta definição, podemos usar a função `fold` de forma implícita:
-# Vamos criar um `fold` que soma todos os valores dos nós da árvore:
-
+# `Fold` Example
+# With this definition, we can use the `fold` function implicitly. Let's create a `fold` 
+# that sums all the node values in the tree:
 
 def sum_btree(btree):
   fold btree:
@@ -34,34 +32,29 @@ def sum_btree(btree):
       return 0
     case BTree/Node:
       return btree.value + btree.left + btree.right
+# In this example:
+# - If the `tree` matches `Leaf`, we return `0`.
+# - If the `tree` matches `Node`, we sum the node's value with the results of the 
+# recursive `fold` calls on the `left` and `right` subtrees.
 
-# Neste exemplo:
-# - Se o `tree` corresponder a uma `Leaf`, retornamos `0`.
-# - Se o `tree` corresponder a um `Node`, somamos o valor do nó com os resultados das
-# chamadas recursivas de `fold` nas subárvores `left` e `right`.
-
-# #### Equivalência com Função Recursiva
-
-# Um `fold` statement é equivalente a uma função recursiva inline. O exemplo acima pode
-# ser reescrito de maneira equivalente usando uma função recursiva explícita:
-
+# Equivalence with Recursive Function
+# A `fold` statement is equivalent to an inline recursive function. The above example can 
+# be rewritten equivalently using an explicit recursive function:
 
 def fold(tree):
   match tree:
     case BTree/Leaf:
       return 0
     case BTree/Node:
-      return btree.value + fold(btree.left) + fold(btree.right)
-
-# Exemplo de uso
+      return tree.value + fold(tree.left) + fold(tree.right)
 
 def main():
   tree = BTree/Node(1, BTree/Node(2, BTree/Leaf, BTree/Leaf),
                        BTree/Node(3, BTree/Leaf, BTree/Leaf))
-  return sum_btree(tree)  # Saída: 6
+  return sum_btree(tree)  # Output: 6
 
-# Conclusão
-# Os `fold` statements fornecem uma maneira elegante de reduzir estruturas de dados
-# complexas, como árvores, aplicando uma função recursivamente. Ao permitir vinculação de
-# campos e chamadas implícitas de `fold`, essa estrutura facilita a manipulação e
-# agregação de dados de maneira clara e eficiente.
+# Conclusion
+# `Fold` statements provide an elegant way to reduce complex data structures like trees 
+# by recursively applying a function. By allowing field binding and implicit `fold` 
+# calls, this structure facilitates clear and efficient manipulation and aggregation of 
+# data.

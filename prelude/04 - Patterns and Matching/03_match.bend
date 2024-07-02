@@ -1,28 +1,26 @@
-# Bend oferece um poderoso sistema de correspondência de padrões através da construção
-# match. Ela permite um controle de fluxo claro e seguro, permitindo uma desestruturação
-# clara e concisa dos valores, com a capacidade de associar variáveis aos campos dos
-# construtores. Com match, você pode escrever código expressivo e robusto para manipular
-# diferentes tipos de dados de forma eficiente.
+# Bend offers a powerful pattern matching system through the `match` construct. It allows
+# for clear and safe control flow, enabling clear and concise deconstruction of values,
+# with the ability to bind variables to fields of the constructors. With `match`, you can 
+# write expressive and robust code to handle different types of data efficiently.
 
-# Estrutura Básica do match
-# A estrutura match examina um valor e permite executar diferentes blocos de código com
-# base no construtor do valor correspondente. Veja um exemplo básico:
+# Basic Structure of `match`
+# The `match` structure examines a value and allows executing different code blocks based
+# on the corresponding value's constructor. Here's a basic example:
 
-# Correspondência de Padrões
-# Os padrões no match devem cobrir as variantes possíveis do tipo que está
-# sendo correspondido.
+# Pattern Matching
+# Patterns in `match` must cover the possible variants of the type being matched.
 
-# Associação de Variáveis
-# É possível associar um nome de variável ao valor correspondente. Os campos do
-# construtor associado são vinculados a matched_var.field_name.
+# Variable Binding
+# It is possible to bind a variable name to the corresponding value. The fields of the 
+# associated constructor are bound to `matched_var.field_name`.
 
-# Atribuição
-# Para campos dentro do construtor, você pode usar variáveis especificadas no corpo do caso.
+# Assignment
+# For fields within the constructor, you can use variables specified in the case body.
 
-# Caso Padrão (`_`) 
-# O caso deve ser `_`, que captura todos os valores não explicitamente enumerados.
+# Default Case (`_`)
+# The default case must be `_`, which catches all values not explicitly enumerated.
 
-# Considere a definição de um tipo Option:
+# Consider the definition of a type `Option`:
 type Option:
   None
   Some {value}
@@ -34,13 +32,13 @@ def match_example(x):
     case Option/Some:
       return x.value
 
-# Neste exemplo, a variável x pode ser uma instância de Option/Some ou Option/None. A lógica
-#  de correspondência determina o valor com base no construtor de x.
-# - Se x for uma instância de Option/None, 0 é retornado.
-# - Se x for uma instância de Option/Some, o campo value é retornado.
+# In this example, the variable `x` can be an instance of `Option/Some` or `Option/None`.
+# The matching logic determines the value based on the constructor of `x`.
+# - If `x` is an instance of `Option/None`, `0` is returned.
+# - If `x` is an instance of `Option/Some`, the field `value` is returned.
 
-# Exemplo Detalhado
-# Considere um type Direction:
+# Detailed Example
+# Consider a type `Direction`:
 type Direction:
   Up
   Down
@@ -57,11 +55,11 @@ def direction_to_string(direction):
       return "Left"
     case Direction/Right:
       return "Right"
+# In this example, `direction_to_string` converts a `Direction` value to a corresponding 
+# string.
 
-# Neste exemplo, direction_to_string converte um valor Direction para uma string correspondente.
-
-# Estruturas Aninhadas
-# Considere uma árvore binária:
+# Nested Structures
+# Consider a binary tree:
 type BTree:
   Leaf
   Node {value, left, right}
@@ -73,22 +71,20 @@ def sum_tree(btree):
     case BTree/Node:
       return btree.value + sum_tree(btree.left) + sum_tree(btree.right)
 
-# Aqui, sum_tree calcula a soma de todos os valores em uma árvore binária:
-# - Se tree for Tree/Leaf, retorna 0.
-# - Se tree for Tree/Node, soma o valor do nó atual com as somas das subárvores esquerda
-# e direita.
+# Here, `sum_tree` calculates the sum of all values in a binary tree:
+# - If `tree` is `BTree/Leaf`, it returns `0`.
+# - If `tree` is `BTree/Node`, it sums the current node's value with the sums of the left 
+# and right subtrees.
 
-
-# Agora vamos aplicar a função match_example.
-# Vamos testar a função:
+# Now let's apply the `match_example` function and test it:
 def main():
   some_value = Option/Some(42)
   none_value = Option/None
-  return (match_example(none_value),  # Saída: 0
-          match_example(some_value))  # Saída: 42
+  return (match_example(none_value),  # Output: 0
+          match_example(some_value))  # Output: 42
 
-# Conclusão
-# Os match statements fornecem uma maneira clara e poderosa de deconstruir valores com 
-# base em seus construtores. Eles permitem associar variáveis aos campos dos construtores 
-# correspondentes, facilitando o trabalho com tipos de dados algébricos e tornando o código 
-# mais legível e organizado.
+# Conclusion
+# `Match` statements provide a clear and powerful way to deconstruct values based on 
+# their constructors. They allow binding variables to the fields of corresponding 
+# constructors, making it easier to work with algebraic data types and resulting in more 
+# readable and organized code.
