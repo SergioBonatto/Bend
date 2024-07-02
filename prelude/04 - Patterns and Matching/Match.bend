@@ -9,7 +9,7 @@
 # base no construtor do valor correspondente. Veja um exemplo básico:
 
 # Correspondência de Padrões
-# Os padrões no match devem cobrir todas as variantes possíveis do tipo que está
+# Os padrões no match devem cobrir as variantes possíveis do tipo que está
 # sendo correspondido.
 
 # Associação de Variáveis
@@ -18,6 +18,9 @@
 
 # Atribuição
 # Para campos dentro do construtor, você pode usar variáveis especificadas no corpo do caso.
+
+# Caso Padrão (`_`) 
+# O caso deve ser `_`, que captura todos os valores não explicitamente enumerados.
 
 # Considere a definição de um tipo Option:
 type Option:
@@ -34,7 +37,7 @@ def match_example(x):
 # Neste exemplo, a variável x pode ser uma instância de Option/Some ou Option/None. A lógica
 #  de correspondência determina o valor com base no construtor de x.
 # - Se x for uma instância de Option/None, 0 é retornado.
-# - Se x for uma instância de Option/Some, o campo value  é retornado.
+# - Se x for uma instância de Option/Some, o campo value é retornado.
 
 # Exemplo Detalhado
 # Considere um type Direction:
@@ -43,7 +46,6 @@ type Direction:
   Down
   Left
   Right
-
 
 def direction_to_string(direction):
   match direction:

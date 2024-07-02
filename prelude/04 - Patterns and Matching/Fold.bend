@@ -1,7 +1,7 @@
 # Os `fold` statements fornecem uma maneira poderosa de reduzir uma estrutura de dados,
-# aplicando uma função recursivamente e combinando os resultados. Outra linguagem que tem `fold` É Haskell que é uma
-# técnica fundamental para operar em estruturas de dados, como listas e árvores. 
-# O `fold` em bend é equivalente ao `foldl` em Haskell.
+# aplicando uma função recursivamente e combinando os resultados. Outra linguagem que tem 
+# `fold` É Haskell que é uma técnica fundamental para operar em estruturas de dados, como 
+# listas e árvores. O `fold` em bend é equivalente ao `foldl` em Haskell.
 
 
 # Estrutura Básica do `fold`
