@@ -18,9 +18,9 @@ sup = {3 7}
 # the result is the superposition of that interaction on both the possible values:
 
 mul = λa λb (* a b)
-  result     = (mul 2 5)         # returns 10
-  result_sup = (mul 2 {5 7})     # returns {10 14}
-  multi_sup  = (mul {2 3} {5 7}) # returns {{10 14} {15 21}}
+  result     = (mul 2 5)          # returns 10
+  result_sup = (mul 2 {5 7})      # returns {10 14}
+  multi_sup  = (mul {2 3} {5 7})  # returns {10 21}
 
 # If we pair a superposition with a duplication, the result is that they behave like 
 # constructing and destructing a pair:
