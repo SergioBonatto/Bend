@@ -7,6 +7,20 @@ and this project does not currently adhere to a particular versioning scheme.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix variable binding in pattern matching when the irrefutable pattern optimization occurs. ([#618][gh-618])
+- Don't warn on unused generated definitions. ([#514][gh-514])
+- Fix local definitions not being desugared properly. ([#623][gh-623])
+
+### Added
+
+- Add import system. ([#544][gh-544])
+- Add multi line comment `#{ ... #}` syntax. ([#595][gh-595])
+- Add error message when input file is not found. ([#513][gh-513])
+
+## [0.2.36] - 2024-07-04
+
 ### Changed
 
 - Improve error messages for redefinition of types and objects. ([#485][gh-485])
@@ -34,6 +48,10 @@ and this project does not currently adhere to a particular versioning scheme.
 - Add list utilities `List/{length, reverse, flatten, concat}`.
 - Add `elif` chains to functional syntax. ([#596][gh-596])
 - Add local definitions to imperative syntax. ([#562][gh-562])
+- Add local definitions to functional syntax.
+- Add repeated field name error message.
+- Add `Math` builtin functions. ([#570][gh-570])
+- Add primitive file IO function `IO/FS/flush`. ([#598][gh-598])
 
 ## [0.2.35] - 2024-06-06
 
@@ -332,6 +350,8 @@ and this project does not currently adhere to a particular versioning scheme.
 [0.2.33]: https://github.com/HigherOrderCO/Bend/releases/tag/0.2.33
 [0.2.34]: https://github.com/HigherOrderCO/Bend/releases/tag/0.2.34
 [0.2.35]: https://github.com/HigherOrderCO/Bend/releases/tag/0.2.35
+[0.2.36]: https://github.com/HigherOrderCO/Bend/releases/tag/0.2.36
+[Unreleased]: https://github.com/HigherOrderCO/Bend/compare/0.2.36...HEAD
 [gh-424]: https://github.com/HigherOrderCO/Bend/issues/424
 [gh-427]: https://github.com/HigherOrderCO/Bend/issues/427
 [gh-443]: https://github.com/HigherOrderCO/Bend/issues/443
@@ -353,17 +373,25 @@ and this project does not currently adhere to a particular versioning scheme.
 [gh-494]: https://github.com/HigherOrderCO/Bend/issues/494
 [gh-502]: https://github.com/HigherOrderCO/Bend/issues/502
 [gh-512]: https://github.com/HigherOrderCO/Bend/issues/512
+[gh-513]: https://github.com/HigherOrderCO/Bend/issues/513
+[gh-514]: https://github.com/HigherOrderCO/Bend/issues/514
 [gh-516]: https://github.com/HigherOrderCO/Bend/issues/516
 [gh-526]: https://github.com/HigherOrderCO/Bend/issues/526
 [gh-528]: https://github.com/HigherOrderCO/Bend/issues/528
+[gh-544]: https://github.com/HigherOrderCO/Bend/pull/544
 [gh-562]: https://github.com/HigherOrderCO/Bend/issues/562
-[gh-581]: https://github.com/HigherOrderCO/Bend/issues/581
+[gh-570]: https://github.com/HigherOrderCO/Bend/issues/570
 [gh-573]: https://github.com/HigherOrderCO/Bend/issues/573
 [gh-578]: https://github.com/HigherOrderCO/Bend/issues/578
 [gh-579]: https://github.com/HigherOrderCO/Bend/issues/579
 [gh-580]: https://github.com/HigherOrderCO/Bend/issues/580
+[gh-581]: https://github.com/HigherOrderCO/Bend/issues/581
 [gh-582]: https://github.com/HigherOrderCO/Bend/issues/582
 [gh-583]: https://github.com/HigherOrderCO/Bend/issues/583
 [gh-586]: https://github.com/HigherOrderCO/Bend/issues/586
+[gh-595]: https://github.com/HigherOrderCO/Bend/issues/595
 [gh-596]: https://github.com/HigherOrderCO/Bend/issues/596
-[Unreleased]: https://github.com/HigherOrderCO/Bend/compare/0.2.35...HEAD
+[gh-598]: https://github.com/HigherOrderCO/Bend/issues/598
+[gh-618]: https://github.com/HigherOrderCO/Bend/issues/618
+[gh-623]: https://github.com/HigherOrderCO/Bend/issues/623
+[Unreleased]: https://github.com/HigherOrderCO/Bend/compare/0.2.36...HEAD

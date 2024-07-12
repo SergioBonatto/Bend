@@ -167,6 +167,13 @@ impl fmt::Display for Term {
       }
       Term::List { els } => write!(f, "[{}]", DisplayJoin(|| els.iter(), ", "),),
       Term::Open { typ, var, bod } => write!(f, "open {typ} {var}; {bod}"),
+      Term::Def { def, nxt } => {
+        write!(f, "def ")?;
+        for rule in def.rules.iter() {
+          write!(f, "{}", rule.display(&def.name))?;
+        }
+        write!(f, "{nxt}")
+      }
       Term::Err => write!(f, "<Invalid>"),
     })
   }
@@ -318,6 +325,16 @@ impl Rule {
       def_name,
       DisplayJoin(|| self.pats.iter().map(|x| display!(" {x}")), ""),
       self.body.display_pretty(2)
+    )
+  }
+
+  pub fn display_def_aux<'a>(&'a self, def_name: &'a Name, tab: usize) -> impl fmt::Display + 'a {
+    display!(
+      "({}{}) =\n  {:tab$}{}",
+      def_name,
+      DisplayJoin(|| self.pats.iter().map(|x| display!(" {x}")), ""),
+      "",
+      self.body.display_pretty(tab + 2)
     )
   }
 }
@@ -483,6 +500,17 @@ impl Term {
         Term::Num { val: Num::F24(val) } => write!(f, "{val:.3}"),
         Term::Str { val } => write!(f, "{val:?}"),
         Term::Ref { nam } => write!(f, "{nam}"),
+        Term::Def { def, nxt } => {
+          write!(f, "def ")?;
+          for (i, rule) in def.rules.iter().enumerate() {
+            if i == 0 {
+              writeln!(f, "{}", rule.display_def_aux(&def.name, tab + 4))?;
+            } else {
+              writeln!(f, "{:tab$}{}", "", rule.display_def_aux(&def.name, tab + 4), tab = tab + 4)?;
+            }
+          }
+          write!(f, "{:tab$}{}", "", nxt.display_pretty(tab))
+        }
         Term::Era => write!(f, "*"),
         Term::Err => write!(f, "<Error>"),
       })

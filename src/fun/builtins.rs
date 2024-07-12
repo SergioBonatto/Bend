@@ -1,4 +1,7 @@
-use super::{parser::TermParser, Book, Name, Num, Pattern, Term};
+use super::{
+  parser::{ParseBook, TermParser},
+  Book, Name, Num, Pattern, Term,
+};
 use crate::maybe_grow;
 
 const BUILTINS: &str = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/fun/builtins.bend"));
@@ -42,13 +45,15 @@ pub const BUILTIN_CTRS: &[&str] =
 
 pub const BUILTIN_TYPES: &[&str] = &[LIST, STRING, NAT, TREE, MAP, IO];
 
-impl Book {
-  pub fn builtins() -> Book {
+impl ParseBook {
+  pub fn builtins() -> Self {
     TermParser::new(BUILTINS)
-      .parse_book(Book::default(), true)
+      .parse_book(Self::default(), true)
       .expect("Error parsing builtin file, this should not happen")
   }
+}
 
+impl Book {
   pub fn encode_builtins(&mut self) {
     for def in self.defs.values_mut() {
       for rule in def.rules.iter_mut() {
@@ -65,6 +70,13 @@ impl Term {
       Term::List { els } => *self = Term::encode_list(std::mem::take(els)),
       Term::Str { val } => *self = Term::encode_str(val),
       Term::Nat { val } => *self = Term::encode_nat(*val),
+      Term::Def { def, nxt } => {
+        for rule in def.rules.iter_mut() {
+          rule.pats.iter_mut().for_each(Pattern::encode_builtins);
+          rule.body.encode_builtins();
+        }
+        nxt.encode_builtins();
+      }
       _ => {
         for child in self.children_mut() {
           child.encode_builtins();

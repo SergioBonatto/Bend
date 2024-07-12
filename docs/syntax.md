@@ -1095,6 +1095,18 @@ with Result {
 }
 ```
 
+### Def
+
+Creates a local function visible in the current block capturing variables:
+
+```rust
+main =
+  let base = 0
+  def aux [] = base
+      aux (List/Cons head tail) = (+ head (aux tail))
+  (aux [1, 2, 3])
+```
+
 ### Numbers and operations
 
 Currently, bend supports 3 types of numbers: floats, integers and unsigned integers. All of then are 24 bit sized.
@@ -1222,3 +1234,33 @@ impossible to write in normal Bend syntax.
 It will also ignore all term-level compiler passes and so can be
 useful for writing programs with exact behaviour that won't ever be
 changed or optimized by the compiler.
+
+# Import Syntax
+
+### Import Relative to the File
+Paths starting with `./` or `../` are imported relative to the file.
+
+### Import Relative to the Main Folder
+Paths that do not start with `./` or `../` are relative to the folder of the main file.
+
+## Syntax
+
+### Import Specific Names from a File, or Files from a Folder
+```py
+from path import name
+from path import (name1, name2)
+import (path/name1, path/name2)
+```
+
+### Import All Names from a File, or All Files from a Folder
+```py
+from path import *
+```
+
+### Aliasing Imports
+```py
+from path import name as alias
+from path import (name1 as Alias1, name2 as Alias2)
+import path as alias
+import (path/name1 as Alias1, path/name2 as Alias2)
+```

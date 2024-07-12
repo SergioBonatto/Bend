@@ -8,6 +8,8 @@ use crate::{
 };
 use TSPL::Parser;
 
+use super::RepeatedNames;
+
 pub struct PyParser<'i> {
   pub input: &'i str,
   pub index: usize,
@@ -767,7 +769,7 @@ impl<'a> PyParser<'a> {
     Ok((case, stmt, nxt_indent))
   }
 
-  /// "fold" <bind> "=" <arg> ":"
+  /// "fold" <bind> ("=" <arg>)? ":"
   ///   "case" <ctr> ":"
   ///     <case>
   ///   ...
@@ -999,7 +1001,8 @@ impl<'a> PyParser<'a> {
     let (body, nxt_indent) = self.parse_statement(&mut indent)?;
     indent.exit_level();
 
-    let def = Definition { name, params, body };
+    // Temporary source, should be overwritten later
+    let def = Definition { name, params, body, source: crate::fun::Source::Generated };
     Ok((def, nxt_indent))
   }
 
@@ -1041,6 +1044,9 @@ impl<'a> PyParser<'a> {
     if self.starts_with("{") {
       fields = self.list_like(|p| p.parse_variant_field(), "{", "}", ",", true, 0)?;
     }
+    if let Some(field) = fields.find_repeated_names().into_iter().next() {
+      return Err(format!("Found a repeated field '{field}' in constructor {ctr_name}."));
+    }
     Ok(Variant { name: ctr_name, fields })
   }
 
@@ -1059,6 +1065,9 @@ impl<'a> PyParser<'a> {
     } else {
       vec![]
     };
+    if let Some(field) = fields.find_repeated_names().into_iter().next() {
+      return Err(format!("Found a repeated field '{field}' in object {name}."));
+    }
     if !self.is_eof() {
       self.consume_new_line()?;
     }

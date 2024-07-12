@@ -1,10 +1,10 @@
 pub mod gen_map_get;
-pub mod lift_local_defs;
 mod order_kwargs;
 pub mod parser;
 pub mod to_fun;
 
-use crate::fun::{CtrField, Name, Num, Op};
+use crate::fun::{CtrField, Name, Num, Op, Source};
+use indexmap::{IndexMap, IndexSet};
 use interner::global::GlobalString;
 
 #[derive(Clone, Debug)]
@@ -99,15 +99,16 @@ pub enum Stmt {
   //  {then}
   // "else" ":"
   //  {otherwise}
-  // <nxt>?
+  // {nxt}?
   If {
     cond: Box<Expr>,
     then: Box<Stmt>,
     otherwise: Box<Stmt>,
     nxt: Option<Box<Stmt>>,
   },
-  // "match" ({bind} "=")? {arg} ({with_clause})? ":"
-  //   case {lft} ":" {rgt}
+  // "match" ({bind} "=")? {arg} ("with" (({bind}) | ({bind} "=" {arg}) ","?)*)? ":"
+  //   "case" {lft} ":"
+  //     {rgt}
   //   ...
   // <nxt>?
   Match {
@@ -118,9 +119,12 @@ pub enum Stmt {
     arms: Vec<MatchArm>,
     nxt: Option<Box<Stmt>>,
   },
-  // "switch" ({bind} "=")? {arg} ({with_clause})? ":"
-  //   case 0..wildcard ":" {rgt}
+  // "switch" ({bind} "=")? {arg}("with" (({bind}) | ({bind} "=" {arg}) ","?)*)? ":"
+  //   "case" 0 ":"
+  //     {stmt}
   //   ...
+  //   "case" _ ":"
+  //     {stmt}
   // <nxt>?
   Switch {
     arg: Box<Expr>,
@@ -130,11 +134,12 @@ pub enum Stmt {
     arms: Vec<Stmt>,
     nxt: Option<Box<Stmt>>,
   },
-  // "bend" ({bind} ("=" {init})?)* "while" {cond} ":"
-  //   {step}
-  // "then" ":"
-  //   {base}
-  // <nxt>?
+  // "bend" ({bind} ("=" {init})? ","?)*
+  //   "when" {cond} ":"
+  //     {step}
+  //   "else" ":"
+  //     {base}
+  // {nxt}}?
   Bend {
     bnd: Vec<Option<Name>>,
     arg: Vec<Expr>,
@@ -143,10 +148,11 @@ pub enum Stmt {
     base: Box<Stmt>,
     nxt: Option<Box<Stmt>>,
   },
-  // "fold" ({bind} "=")? {arg} ({with_clause})? ":" {arms}
-  //   case {lft} ":" {rgt}
+  // "fold" ({bind} "=")? {arg} ("with" (({bind}) | ({bind} "=" {arg}) ","?)*)? ":"
+  //   case {lft} ":"
+  //     {rgt}
   //   ...
-  // <nxt>?
+  // {nxt}?
   Fold {
     arg: Box<Expr>,
     bnd: Option<Name>,
@@ -155,8 +161,9 @@ pub enum Stmt {
     arms: Vec<MatchArm>,
     nxt: Option<Box<Stmt>>,
   },
-  // "with" {fun} ":"
-  //   {block}
+  // "with" {typ} ":"
+  //   "ask" {id} = {expr} ";"?
+  //   ...
   // <nxt>?
   With {
     typ: Name,
@@ -194,7 +201,7 @@ pub enum Stmt {
   Err,
 }
 
-// Name "{" {fields}* "}"
+// {name} "{" {field}* "}"
 #[derive(Clone, Debug)]
 pub struct Variant {
   pub name: Name,
@@ -207,9 +214,10 @@ pub struct Definition {
   pub name: Name,
   pub params: Vec<Name>,
   pub body: Stmt,
+  pub source: Source,
 }
 
-// "enum" ":" {variants}*
+// "type" {name} ":" {variant}*
 #[derive(Clone, Debug)]
 pub struct Enum {
   pub name: Name,
@@ -228,5 +236,25 @@ impl InPlaceOp {
       InPlaceOp::Xor => Op::XOR,
       InPlaceOp::Map => unreachable!(),
     }
+  }
+}
+
+pub trait RepeatedNames {
+  fn find_repeated_names(&self) -> IndexSet<Name>;
+}
+
+impl RepeatedNames for Vec<CtrField> {
+  fn find_repeated_names(&self) -> IndexSet<Name> {
+    let mut count = IndexMap::new();
+    for field in self.iter() {
+      *count.entry(field.nam.clone()).or_insert(0) += 1;
+    }
+    count.into_iter().filter_map(|(name, count)| if count > 1 { Some(name) } else { None }).collect()
+  }
+}
+
+impl RepeatedNames for Variant {
+  fn find_repeated_names(&self) -> IndexSet<Name> {
+    self.fields.find_repeated_names()
   }
 }

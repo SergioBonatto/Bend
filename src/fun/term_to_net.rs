@@ -21,13 +21,17 @@ pub fn book_to_hvm(book: &Book, diags: &mut Diagnostics) -> Result<(hvm::ast::Bo
   let mut hvm_book = hvm::ast::Book { defs: Default::default() };
   let mut labels = Labels::default();
 
-  let main = book.entrypoint.as_ref().unwrap();
+  let main = book.entrypoint.as_ref();
 
   for def in book.defs.values() {
     for rule in def.rules.iter() {
       let net = term_to_hvm(&rule.body, &mut labels);
 
-      let name = if def.name == *main { book.hvm_entrypoint().to_string() } else { def.name.0.to_string() };
+      let name = if main.is_some_and(|m| &def.name == m) {
+        book.hvm_entrypoint().to_string()
+      } else {
+        def.name.0.to_string()
+      };
 
       match net {
         Ok(net) => {
@@ -235,6 +239,7 @@ impl<'t, 'l> EncodeTermState<'t, 'l> {
         | Term::Nat { .. } // Removed in encode_nat
         | Term::Str { .. } // Removed in encode_str
         | Term::List { .. } // Removed in encode_list
+        | Term::Def { .. } // Removed in earlier pass
         | Term::Err => unreachable!(),
       }
       while let Some((pat, val)) = self.lets.pop() {
